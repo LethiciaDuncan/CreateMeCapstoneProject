@@ -1,0 +1,445 @@
+#title {
+    font-size: 100px;
+    min-height: 100%;
+    position: absolute;
+    text-shadow: 0 0 3px #deaaff, 0 0 5px #d8bbff;
+    color: #70e000;
+    z-index: 2;
+    left:28%;
+}
+#title2{
+    font-size: 35px;
+    min-height: 35%;
+    text-shadow: 0 0 3px #deaaff, 0 0 5px #d8bbff;
+    color: #70e000;
+    text-align: center;
+}
+
+#title3 {
+    position: absolute;
+    left: 45%;
+    top:5%;
+    font-size: 35px;
+    min-height: 35%;
+    text-shadow: 0 0 3px #deaaff, 0 0 5px #d8bbff;
+    color: #70e000;
+    text-align: center;
+    z-index: 2;
+}
+body {
+    background-image: linear-gradient(to bottom,#3e1f47, #4d194d,#772D8B,#70e000);
+    background-repeat: no-repeat;
+    background-position: right top;
+    height: 770px;
+
+}
+
+#backgroundImg {
+    position: absolute;
+    top: 1%;
+    z-index: 1;
+    width:99%;
+    height:103%;
+}
+
+.footerDiv {
+    position: absolute;
+    bottom: 0.5%;
+    background-color: #3e1f47;
+    width: 1500px;
+    height: 5px;
+    z-index: 2;
+}
+header {
+    position:absolute;
+    z-index: 2;
+}
+
+.content {
+    position: absolute;
+    z-index: 2;
+    left: 1%;
+    top: 30%;
+    color:#70e000;
+}
+
+
+.profileDiv .profileNavBar {
+    position: absolute;
+    left: 43%;
+    top: 15%;
+    z-index:2;
+    cursor:pointer;
+}
+#profileLine {
+    position: absolute;
+    top: 175px;
+    left: 1px;
+    background-color: #bbb;
+    width: 99%;
+    height: 8px;
+    z-index: 2;
+}
+#LogButton {
+    background-color: #7A6174;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    z-index: 2;
+    width: 10%;
+    height: 10%;
+    font-size: 25px;
+    cursor: pointer;
+}
+
+#resetButton {
+    background-color: #7A6174;
+    width: 45%;
+    height: 45%;
+    font-size: 30px;
+    margin-left: 100px;
+    cursor: pointer;
+}
+#saveButton {
+    background-color: #7A6174;
+    width: 45%;
+    height: 45%;
+    font-size: 30px;
+    margin-left: 250px;
+    cursor: pointer;
+}
+.leftHatButton {
+    position:relative;
+    width: 0;
+    height: 0;
+    margin-left: 60px;
+    background-color: transparent;
+    border-top: 20px solid transparent;
+    border-bottom: 20px solid transparent;
+    border-left: 40px solid #70e000;
+    transform: rotate(-180deg);
+    cursor: pointer;
+    overflow: hidden;
+}
+
+
+
+.rightHatButton {
+    position: relative;
+    width: 0;
+    height: 0;
+    margin-left: 80px;
+    background-color: transparent;
+    border-top: 20px solid transparent;
+    border-bottom: 20px solid transparent;
+    border-left: 40px solid #70e000;
+    transform: rotate(360deg);
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.leftEyeButton {
+    position: relative;
+    width: 0;
+    height: 0;
+    margin-left: 60px;
+    background-color: transparent;
+    border-top: 20px solid transparent;
+    border-bottom: 20px solid transparent;
+    border-left: 40px solid #70e000;
+    transform: rotate(-180deg);
+    cursor: pointer;
+    overflow: hidden;
+}
+
+
+
+.rightEyeButton {
+    position: relative;
+    width: 0;
+    height: 0;
+    margin-left: 80px;
+    background-color: transparent;
+    border-top: 20px solid transparent;
+    border-bottom: 20px solid transparent;
+    border-left: 40px solid #70e000;
+    transform: rotate(360deg);
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.leftBodyButton {
+    position: relative;
+    width: 0;
+    height: 0;
+    margin-left: 60px;
+    background-color: transparent;
+    border-top: 20px solid transparent;
+    border-bottom: 20px solid transparent;
+    border-left: 40px solid #70e000;
+    transform: rotate(-180deg);
+    cursor: pointer;
+    overflow: hidden;
+}
+
+
+
+.rightBodyButton {
+    position: relative;
+    width: 0;
+    height: 0;
+    margin-left: 80px;
+    background-color: transparent;
+    border-top: 20px solid transparent;
+    border-bottom: 20px solid transparent;
+    border-left: 40px solid #70e000;
+    transform: rotate(360deg);
+    cursor: pointer;
+    overflow: hidden;
+}
+.leftMouthButton {
+    position: relative;
+    width: 0;
+    height: 0;
+    margin-left: 60px;
+    background-color: transparent;
+    border-top: 20px solid transparent;
+    border-bottom: 20px solid transparent;
+    border-left: 40px solid #70e000;
+    transform: rotate(-180deg);
+    cursor: pointer;
+    overflow: hidden;
+}
+
+
+
+.rightMouthButton {
+    position: relative;
+    width: 0;
+    height: 0;
+    margin-left: 80px;
+    background-color: transparent;
+    border-top: 20px solid transparent;
+    border-bottom: 20px solid transparent;
+    border-left: 40px solid #70e000;
+    transform: rotate(360deg);
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.section1 {
+    position: absolute;
+    top: 165px;
+    left: 1px;
+    background-color: #bbb;
+    width: 99%;
+    height: 8px;
+    z-index: 2;
+}
+
+.section2 {
+    position: absolute;
+    top: 173px;
+    left: 1010px;
+    background-color: #bbb;
+    width: 5px;
+    height: 450px;
+    z-index: 2;
+}
+
+.section3 {
+    position: absolute;
+    bottom: 87px;
+    left: 1px;
+    background-color: #bbb;
+    width: 99%;
+    height: 8px;
+    z-index: 2;
+}
+
+
+#SignButton {
+    background-color: #7A6174;
+    position: absolute;
+    right: 50%;
+    top: 50%;
+    z-index: 2;
+    width: 10%;
+    height: 10%;
+    font-size: 25px;
+}
+.grid-container {
+    display: grid;
+    position:relative;
+    align-items: center;
+    grid-template-columns: auto auto auto;
+    gap: 5px;
+    padding: 10px;
+
+}
+
+    .grid-container div {
+        position: relative;
+        text-align: center;
+        padding: 10px 0;
+        font-size: 25px;
+    }
+
+
+.item1 {
+    grid-column-start: 1;
+    grid-column-end: 4;
+}
+
+.item2 {
+    justify-content:center;
+    height:80px;
+    grid-column-start: 1;
+    grid-column-end: 3;
+}
+
+.item3 {
+    position: relative;
+    margin-left: 350px;
+}
+
+.item4 {
+    height: 80px;
+    grid-column-start: 1;
+    grid-column-end: 3;
+}
+.item5 {
+    position: relative;
+    margin-left: 350px;
+}
+
+.item6 {
+    height: 80px;
+    grid-column-start: 1;
+    grid-column-end: 3;
+}
+
+.item7 {
+    position: relative;
+    margin-left: 350px;
+}
+
+.item8 {
+    height: 80px;
+    grid-column-start: 1;
+    grid-column-end: 3;
+}
+.item9 {
+    position: relative;
+    margin-left: 350px;
+}
+
+.item11 form {
+    cursor: pointer;
+    margin-left: 300px;
+    font-size: 10px;
+}
+
+.item11 h2 {
+    font-size: 15px;
+}
+profileNavBar {
+    padding: 10px 0;
+}
+
+.profileNavBar ul {
+    list-style-type: none;
+    overflow: hidden;
+}
+
+.profileNavBar li {
+    float: left;
+    border-right: 1px solid #bbb;
+    z-index:2;
+}
+
+    .navBar li:last-child {
+        margin-right: 0px;
+    }
+
+.profileNavBar a {
+    color: #827191;
+    border-radius: 4px;
+    text-align: center;
+    padding: 30px 65px;
+    text-decoration: none;
+    z-index: 2;
+}
+
+    .profileNavBar a:hover {
+        background-color: #D5B9B2;
+        cursor:pointer;
+    }
+
+
+navBar {
+    padding: 10px 0;
+    z-index: 2;
+}
+
+.navBar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+.navBar li {
+    float: left;
+    border-right: 1px solid #bbb;
+}
+
+.navBar li:last-child {
+    margin-right: 0px;
+}
+
+.navBar a {
+    color: #827191;
+    border-radius: 4px;
+    text-align: center;
+    padding: 30px 65px;
+    text-decoration: none;
+    z-index: 2;
+}
+
+    .navBar a:hover {
+        background-color: #D5B9B2;
+    }
+
+.navBar2 ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+.navBar2 li {
+    margin-right: 10%;
+}
+
+    .navBar2 li:last-child {
+        margin-right: 0px;
+    }
+
+.navBar2 a {
+    color: #3e1f47;
+    text-shadow: 0 0 3px #d8bbff, 0 0 5px #d8bbff;
+}
+
+.footerDiv footer {
+    position: absolute;
+    top: 40%;
+    left: 45%;
+    color: #ECE2D0;
+    text-shadow: 1px 1px 2px black, 0 0 25px #759FBC, 0 0 5px #912F56;
+    z-index: 2;
+}
+
+.hide{
+    display:none;
+}

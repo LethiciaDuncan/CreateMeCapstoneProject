@@ -1,0 +1,18 @@
+<Project Sdk="Devsense.Php.Sdk">
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>1b3ff6e9-d25c-4ffa-ad66-0a665ed65a41</ProjectGuid>
+  </PropertyGroup>
+  <PropertyGroup>
+    <EnvName>PHPDev</EnvName>
+    <RuntimeVersion>8.2</RuntimeVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <Content Remove="NewFolder1\**" />
+    <Content Remove="NewFolder2\**" />
+    <Content Remove="NewFolder3\**" />
+    <Content Remove="NewFolder\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Backend\" />
+  </ItemGroup>
+</Project>
