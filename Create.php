@@ -14,33 +14,39 @@ include_once('header.php');
 </head>
 
 <body>
+    <div class="creation">
+        <img id="bodyImg" src="Images/blob.png" />
+        <img id="eyeImg" src="Images/eyes1.png" />
+        <img id="mouthImg" src="Images/mouth1.png" />
+        <img id="hatImg" src="Images/hat1.png" />
+    </div>
     <div class="section1"></div>
     <div class="section2"></div>
     <div class="section3"></div>
     <div class="grid-container">
         <div class="item1"><h1 id="title2"> Create</h1></div>
-        <div class="item2">2</div>
+        <div class="item2"></div>
         <div class="item3"> hat
-            <button class="leftHatButton"></button>
-            <button class="rightHatButton"></button>
+            <button onclick="prevHatImg()" class="leftHatButton"></button>
+            <button onclick="nextHatImg()" class="rightHatButton"></button>
         </div>
-        <div class="item4">4</div>
+        <div class="item4"></div>
         <div class="item5">eyes
-            <button class="leftEyeButton"></button>
-            <button class="rightEyeButton"></button>
+            <button onclick="prevEyeImg()" class="leftEyeButton"></button>
+            <button onclick="nextEyeImg()" class="rightEyeButton"></button>
         </div>
-        <div class="item6">6</div>
+        <div class="item6"></div>
         <div class="item7">body
-            <button class="leftBodyButton"></button>
-            <button class="rightBodyButton"></button>
+            <button onclick="prevBodyImg()" class="leftBodyButton"></button>
+            <button onclick="nextBodyImg()" class="rightBodyButton"></button>
         </div>
-        <div class="item8">8</div>
+        <div class="item8"></div>
         <div class="item9">mouth
-            <button class="leftMouthButton"></button>
-            <button class="rightMouthButton"></button>
+            <button onclick="prevMouthImg()" class="leftMouthButton"></button>
+            <button onclick="nextMouthImg()" class="rightMouthButton"></button>
         </div>
         <div class="item10">
-        <button class="btn btn-light btn-lg" id="resetButton">
+        <button onclick="reSet" class="btn btn-light btn-lg" id="resetButton">
         Reset
         </button>
         </div>
@@ -55,13 +61,110 @@ include_once('header.php');
         <label for="Cute">Cute</label><br />
         <input type="radio" id="None" name="catergory" value="None" />
          <label for="None">None</label><br /> 
-</form></div>
+        </form></div>
         <div class="item12">
-        <button class="btn btn-light btn-lg" id="saveButton">
+        <button onclick="save" class="btn btn-light btn-lg" id="saveButton">
          Save
         </button>
         </div>
     </div>
 </body>
-
 </html>
+
+<script>
+
+    var currentBody = 0;
+    var bodyImgs = ["Images/blob.png", "Images/circle.png", "Images/oval.png", "Images/square.png", "Images/triangle.png"];
+    var currentEye = 0;
+    var eyeImgs = ["Images/eyes1.png", "Images/eyes2.png", "Images/eyes3.png", "Images/eyes4.png", "Images/eyes5.png", "Images/eyes6.png"];
+    var currentHat = 0;
+    var hatImgs = ["Images/hat1.png", "Images/hat2.png", "Images/hat3.png", "Images/hat4.png", "Images/hat6.png","Images/hat7.png","Images/hat5.png"];
+    var currentMouth = 0;
+    var mouthImgs = ["Images/mouth1.png", "Images/mouth2.png", "Images/mouth3.png", "Images/mouth4.png",  "Images/mouth5.png", "Images/mouth6.png", "Images/mouth7.png", "Images/mouth8.png", "Images/mouth9.png"];
+
+    //change body Image to previous
+    function prevBodyImg() {
+        currentBody = (currentBody - 1 + bodyImgs.length) % bodyImgs.length;
+        //changes img
+        changeBodyImg();
+    }
+    //change body Image to next
+    function nextBodyImg() {
+       currentBody = (currentBody + 1) % bodyImgs.length;
+        //changes img
+        changeBodyImg();
+    }
+    //change which body img is displayed
+    function changeBodyImg() {
+        var img = document.getElementById("bodyImg");
+        img.src = bodyImgs[currentBody];
+    }
+    //change eye Image to previous
+    function prevEyeImg() {
+        currentEye = (currentEye - 1 + eyeImgs.length) % eyeImgs.length;
+        //changes img
+        changeEyeImg();
+    }
+    //change eye Image to next
+    function nextEyeImg() {
+       currentEye = (currentEye + 1) % eyeImgs.length;
+        //changes img
+        changeEyeImg();
+    }
+    //change which eye img is displayed
+    function changeEyeImg() {
+        var img = document.getElementById("eyeImg");
+        img.src = eyeImgs[currentEye];
+    }
+    //change hat Image to previous
+    function prevHatImg() {
+        currentHat = (currentHat - 1 + hatImgs.length) % hatImgs.length;
+    //changes img
+        changeHatImg();
+    }
+    //change hat Image to next
+    function nextHatImg() {
+       currentHat = (currentHat + 1) % hatImgs.length;
+        //changes img
+        changeHatImg();
+    }
+    //change which hat img is displayed
+    function changeHatImg() {
+        var img = document.getElementById("hatImg");
+        img.src = hatImgs[currentHat];
+    }
+    //change mouth Image to previous
+    function prevMouthImg() {
+        currentMouth = (currentMouth - 1 + mouthImgs.length) % mouthImgs.length;
+    //changes img
+        changeMouthImg();
+    }
+    //change mouth Image to next
+    function nextMouthImg() {
+       currentMouth = (currentMouth + 1) % mouthImgs.length;
+        //changes img
+        changeMouthImg();
+    }
+    //change which mouth img is displayed
+    function changeMouthImg() {
+        var img = document.getElementById("mouthImg");
+        img.src = mouthImgs[currentMouth];
+    }
+     //reset image options
+        function reSet() {
+            currentBody = 0;
+            currentEyes = 0;
+            currentHat = 0;
+            currentMouth =0;
+            changeBodyImg();
+            changeEyeImg();
+            changeHatImg();
+            changeMouthImg();
+
+        }
+    //save created image to database
+    function save() {
+
+        }
+</script>
+

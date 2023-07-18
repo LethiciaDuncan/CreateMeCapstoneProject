@@ -33,7 +33,46 @@ body {
     height: 770px;
 
 }
+.creation {
+    position: absolute;
+    background-color:aliceblue;
+    top: 190px;
+    left: 300px;
+    width: 350px;
+    height: 400px;
+}
 
+#bodyImg {
+    position: absolute;
+    max-width: 1000px;
+    max-height: 1000px;
+    bottom: -310px;
+    right: -325px;
+}
+
+#eyeImg {
+    position: absolute;
+    max-width: 300px;
+    max-height: 300px;
+    bottom: -20px;
+    right: -1px;
+}
+
+#hatImg {
+    position: absolute;
+    max-width: 550px;
+    max-height: 550px;
+    bottom: -125px;
+    right: -105px;
+}
+
+#mouthImg {
+    position: absolute;
+    max-width: 250px;
+    max-height: 250px;
+    bottom: -20px;
+    right: -10px;
+}
 #backgroundImg {
     position: absolute;
     top: 1%;
@@ -243,13 +282,13 @@ header {
     left: 1010px;
     background-color: #bbb;
     width: 5px;
-    height: 450px;
+    height: 420px;
     z-index: 2;
 }
 
 .section3 {
     position: absolute;
-    bottom: 87px;
+    bottom: 120px;
     left: 1px;
     background-color: #bbb;
     width: 99%;
@@ -339,6 +378,7 @@ header {
     margin-left: 300px;
     font-size: 10px;
 }
+
 
 .item11 h2 {
     font-size: 15px;
