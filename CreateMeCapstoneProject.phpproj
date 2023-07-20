@@ -12,7 +12,4 @@
     <Content Remove="NewFolder3\**" />
     <Content Remove="NewFolder\**" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Backend\" />
-  </ItemGroup>
 </Project>

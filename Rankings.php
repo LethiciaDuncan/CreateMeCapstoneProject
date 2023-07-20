@@ -16,10 +16,56 @@ include_once('header.php');
 <body>
     <h1 id="title3"> Rankings</h1>
     <div class="section1"></div>
+    <div class="content">
+        <div id="casualContent"></div>
+        <div class="hide" id="spookyContent"></div>
+        <div class="hide" id="cuteContent"></div>
+    </div>
+    <div class="dropdown">
+        <button class="dropbtn">Dropdown</button>
+        <div class="dropdown-content">
+            <button id="casualButton">Casual</button>
+            <button id="spookyButton">Spooky</button>
+            <button id="cuteButton">Cute</button>
+        </div>
+    </div>
 
-
-    <img id="backgroundImg" src="Images/testdesign.png" />
+        <img id="backgroundImg" src="Images/testdesign.png" />
 
 </body>
 
 </html>
+
+<script>
+    //To diplay the different sections of the rankings page and hide the sections that arent currently displayed
+    document.getElementById("casualButton").addEventListener('click', function
+        () {
+        var casual = document.getElementById("casualContent");
+        var spooky = document.getElementById("spookyContent");
+        var cute = document.getElementById("cuteContent");
+
+        casual.style.display = "block";
+        spooky.style.display = "none";
+        cute.style.display = "none";
+    })
+    document.getElementById("spookyButton").addEventListener('click', function
+        () {
+        var casual = document.getElementById("casualContent");
+        var spooky = document.getElementById("spookyContent");
+        var cute = document.getElementById("cuteContent");
+
+        casual.style.display = "none";
+        spooky.style.display = "block";
+        cute.style.display = "none";
+    })
+    document.getElementById("cuteButton").addEventListener('click', function
+        () {
+        var casual = document.getElementById("casualContent");
+        var spooky = document.getElementById("spookyContent");
+        var cute = document.getElementById("cuteContent");
+
+        casual.style.display = "none";
+        spooky.style.display = "none";
+        cute.style.display = "block";
+    })
+</script>

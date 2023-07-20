@@ -1,4 +1,5 @@
 <?php
+$_SESSION['signedIn'] = False;
 ?>
 <!Doctype html>
 <html lang="en">
