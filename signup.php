@@ -17,9 +17,9 @@ if(array_key_exists("UserAlreadyExists", $_GET)){
     </style>
 </head>
 <body>
-    <h1 class="display-4" id="title"> Sign Up</h1>
+    <h1  id="title"> Sign Up</h1>
 
-    <form id="signForm" action="Backend/signUp.php" method="post">
+    <form class="signForm" action="Backend/signUp.php" method="post">
         <input placeholder="Enter your username" class="u1" name="Username" id="Username" required />
         <br />
         <input placeholder="Enter your Password" class="p1" name="Password" id="Password" required />

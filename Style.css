@@ -1,11 +1,11 @@
 #title {
+    position: relative;
+    text-align: center;
     font-size: 100px;
     min-height: 100%;
-    position: absolute;
     text-shadow: 0 0 3px #deaaff, 0 0 5px #d8bbff;
     color: #70e000;
     z-index: 2;
-    left:28%;
 }
 #title2{
     font-size: 35px;
@@ -15,27 +15,6 @@
     text-align: center;
 }
 
-#title3 {
-    position: absolute;
-    left: 45%;
-    top:5%;
-    font-size: 35px;
-    min-height: 35%;
-    text-shadow: 0 0 3px #deaaff, 0 0 5px #d8bbff;
-    color: #70e000;
-    text-align: center;
-    z-index: 2;
-}
-
-#title4 {
-    font-size: 100px;
-    min-height: 100%;
-    position: absolute;
-    text-shadow: 0 0 3px #deaaff, 0 0 5px #d8bbff;
-    color: #70e000;
-    z-index: 2;
-    left: 35%;
-}
 body {
     background-image: linear-gradient(to bottom,#3e1f47, #4d194d,#772D8B,#70e000);
     background-repeat: no-repeat;
@@ -44,17 +23,19 @@ body {
 
 }
 
-#signForm{
-    position:absolute;
-    left:40%;
-    top:50%;
+.signForm {
+    position: relative;
+    text-align: center;
+    top: -70%;
+    z-index: 3;
+}
+.logForm {
+    position:relative;
+   text-align:center;
+   top: -50%;
+   z-index:3;
 }
 
-#logForm {
-    position: absolute;
-    left: 35%;
-    top: 50%;
-}
 .creation {
     position: absolute;
     background-color:aliceblue;
@@ -160,6 +141,7 @@ header {
     font-size: 30px;
     margin-left: 100px;
     cursor: pointer;
+    z-index: 3;
 }
 #saveButton {
     background-color: #7A6174;
@@ -168,6 +150,7 @@ header {
     font-size: 30px;
     margin-left: 250px;
     cursor: pointer;
+    z-index:3;
 }
 .leftHatButton {
     position:relative;

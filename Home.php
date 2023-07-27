@@ -14,7 +14,7 @@ include_once('header.php');
 </head>
 
 <body>
-    <h1 id="title3"> Home</h1>
+    <h1 id="title"> Home</h1>
    <div class="section1"></div>
 
 

@@ -14,7 +14,7 @@ include_once('header.php');
 </head>
 
 <body>
-    <h1 id="title3"> Rankings</h1>
+    <h1 id="title"> Rankings</h1>
     <div class="section1"></div>
     <div class="content">
         <div id="casualContent"></div>

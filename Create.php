@@ -11,10 +11,11 @@ include_once('header.php');
                   font-family: 'Nosifer', cursive;
             }
     </style>
+    <script src="Js/html2canvas.min.js"> </script>
 </head>
 
 <body>
-    <div class="creation">
+    <div id="img" class="creation">
         <img id="bodyImg" src="Images/blob.png" />
         <img id="eyeImg" src="Images/eyes1.png" />
         <img id="mouthImg" src="Images/mouth1.png" />
@@ -46,7 +47,7 @@ include_once('header.php');
             <button onclick="nextMouthImg()" class="rightMouthButton"></button>
         </div>
         <div class="item10">
-        <button onclick="reSet" class="btn btn-light btn-lg" id="resetButton">
+        <button class="btn btn-light btn-lg" id="resetButton">
         Reset
         </button>
         </div>
@@ -151,20 +152,45 @@ include_once('header.php');
         img.src = mouthImgs[currentMouth];
     }
      //reset image options
-        function reSet() {
-            currentBody = 0;
-            currentEyes = 0;
-            currentHat = 0;
-            currentMouth =0;
+    function reset() {
+        document.getElementById("resetButton").addEventListener("click", function () {
+            //reset body
+            currentBody = (currentBody * 0) % bodyImgs.length;
             changeBodyImg();
+            //reset eyes
+            currentEye = eyeImgs[0];
             changeEyeImg();
+        //reset hat
+           currentHat = 0;
             changeHatImg();
+        //reset mouth
+                currentMouth = 0;
             changeMouthImg();
 
+            console.log("clicked");
+        });
         }
     //save created image to database
     function save() {
+        //getting div
+        var createdImg = document.getElementById("img");
+        //converting to canvas
+        html2canvas(createdImg).then(function (canvas) {
+                const imgUrl = canvas.toDataURL("test/png");
 
-        }
+            fetch('SaveImg.php', {
+                method: "Post",
+                headers: {
+                   'Content-Type': 'application/x-www-form-urlencoded' 
+                },
+                body: 'imgUrl=' + encodedURIComponent(imgUrl)
+            }).then(function (response) {
+                console.log(response);
+            }).catch(function (error) {
+                console.error(error);
+            })
+        })
+        
+    }
 </script>
 

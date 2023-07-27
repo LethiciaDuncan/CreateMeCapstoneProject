@@ -22,8 +22,8 @@ if (array_key_exists("AddedUser", $_GET)) {
     </style>
 </head>
 <body>
-    <h1 id="title4"> Log In</h1>
-    <form id="logForm" class="" action="Backend/login.php" method="post">
+    <h1 id="title"> Log In</h1>
+    <form class="logForm" action="Backend/login.php" method="post">
         <input placeholder="Enter your username" class="u1" name="username" id="username" />
         <input placeholder="Enter your password" class="p1" name="password" id="password" />
         <input type="submit" class="btnlog" placeholder="Login" />
