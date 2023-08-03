@@ -14,7 +14,11 @@ include_once('header.php');
 </head>
 
 <body>
+    <button class="btn btn-light btn-lg" id="LogOutButton" onclick="redirectLogout()">
+        LogOut
+    </button>
     <h1 id="title3"> Profile</h1>
+    <p id="profileUserName"></p>
     <div class="profileDiv">
         <nav class="profileNavBar">
             <ul>
@@ -74,6 +78,41 @@ include_once('header.php');
         favs.style.display = "block";
         creation.style.display = "none";
         likes.style.display = "none";
-    })
+         })
+
+    function redirectLogout() { window.location.href = "index.php"; }
+
+    var request = new XMLHttpRequest();
+    window.onload = (event) => {
+        loadJson()
+    }
+    //getting user info
+    function loadJson() {
+        request.open('GET', './Backend/Profile.php');
+        request.onload=loadComplete;
+        request.send();
+
+
+    }
+    //loading user info
+    function loadComplete(evt) {
+        var myResponse;
+        var myData;
+        var myUsername = "";
+        myResponse = request.responseText;
+        console.log(myResponse)
+
+        myData = JSON.parse(myResponse);
+        console.log(myData)
+
+        //putting user name in profileUserName p tag
+        for (index in myData) {
+            myUsername += "<tr><td>" +
+                myData[index].Username + "</td><td>";
+        }
+        myUsername += "<tr><td>";
+        document.getElementById("profileUserName").innerHTML = myUsername;
+
+    }
 </script>
 

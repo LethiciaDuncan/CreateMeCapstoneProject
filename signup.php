@@ -1,7 +1,7 @@
 <?php
 
 if(array_key_exists("UserAlreadyExists", $_GET)){
-    echo "<div class='alert alert-danger'>User already esists, please try another username!</div>";
+    echo "<div class='alert alert-danger'>User already exists, please try another username!</div>";
 }
 
 ?>
@@ -17,19 +17,24 @@ if(array_key_exists("UserAlreadyExists", $_GET)){
     </style>
 </head>
 <body>
+    <button class="btn btn-light btn-lg" id="LogOutButton" onclick="redirectLogout()">
+        Back
+    </button>
     <h1  id="title"> Sign Up</h1>
 
-    <form class="signForm" action="Backend/signUp.php" method="post">
-        <input placeholder="Enter your username" class="u1" name="Username" id="Username" required />
+    <form class="signForm" action="Backend/signup.php" method="post">
+        <input placeholder="Enter your username"  name="Username" id="Username" required />
         <br />
-        <input placeholder="Enter your Password" class="p1" name="Password" id="Password" required />
+        <input placeholder="Enter your Password"  name="Password" id="Password" required />
         <br />
         <input type="submit" class="btnlog" value="Sign Up" />
     </form>
 </body>
 
 </html>
-
+<script>
+          function redirectLogout() { window.location.href = "index.php"; }
+</script>
 <?php
 include_once "Footer.php"
 ?>

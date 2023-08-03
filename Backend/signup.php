@@ -1,21 +1,21 @@
 <?php
-include_once "DbConnector.php";
+include_once "../Backend/DbConnecter.php";
 
 header('Content-Type: application/json');
 
-
-$Username = $_POST['Username'];
-$Password = $_POST['Password'];
+$username = $_POST['Username'];
+$password = $_POST['Password'];
 
 $myDbConn = ConnGet();
 
-$dataSet = checkifUserExists($myDbConn, $Username);
+$dataSet = checkifUserExists($myDbConn, $username);
 
 if (mysqli_num_rows($dataSet) != 0) {
-    header("Location: ../SignUp.php?UserAlreadyExists=1");
+   header("Location: ../SignUp.php?UserAlreadyExists=1");
+
 
 } else {
-    addNewUser($myDbConn, $Username, $Password);
+    addNewUser($myDbConn, $username, $password);
     mysqli_close($myDbConn);
     header("Location: ../Login.php?AddedUser=1");
 }

@@ -14,12 +14,18 @@ include_once('header.php');
 </head>
 
 <body>
-    <h1 id="title"> Home</h1>
+    <h1 id="title4"> Home</h1>
    <div class="section1"></div>
 
-
+    <button class="btn btn-light btn-lg" id="LogOutButton" onclick="redirectLogout()">
+        LogOut
+    </button>
     <img id="backgroundImg" src="Images/testdesign.png" />
 
 </body>
 
 </html>
+
+<script>
+        function redirectLogout() { window.location.href = "index.php"; }
+</script>

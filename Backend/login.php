@@ -1,43 +1,44 @@
+
 <?php
-include_once "DbConnector.php";
+include_once "../Backend/DbConnecter.php";
 
 header('Content-Type: application/json');
 
 
 $adminUsername = "admin";
-$adminPassword = "password";
+$adminPassword = "admin";
 
 
-$Username = $_POST['Username'];
-$Password = $_POST['Password'];
+$username = $_POST['Username'];
+$password = $_POST['Password'];
 
 
 
-if ($Username == $adminUsername && $Password == $adminPassword) {
-    $_SESSION['signedIn'] = True;
-    $_SESSION['signedInAdmin'] = True;
+if($username == $adminUsername && $password == $adminPassword){
+    $_SESSION['signedIn']=True;
+    $_SESSION['signedInAdmin']= True;
     header("Location: ../Admin.php?alreadyTriedP=1");
-} else {
+}else{
 
     $myDbConn = ConnGet();
 
-    $dataSet = checkifUserExists($myDbConn, $Username);
+    $dataSet = checkifUserExists($myDbConn, $username);
 
-    if (mysqli_num_rows($dataSet) != null) {
+    if (mysqli_num_rows($dataSet) != null){
 
-        if ($row = mysqli_fetch_array($dataSet)) {
+        if($row = mysqli_fetch_array($dataSet)) {
             $storedPassword = $row['Password'];
-            if ($Password == $storedPassword) {
-                $_SESSION['signedIn'] = True;
-                $_SESSION['UserId'] = $row['UserId'];
+            if($password == $storedPassword){
+                $_SESSION['signedIn']=True;
+                $_SESSION['UserId']= $row['UserId'];
                 mysqli_close($myDbConn);
                 header("Location: ../Profile.php");
-            } else {
+            }else{
                 mysqli_close($myDbConn);
                 header("Location: ../login.php?alreadyTriedP=1");
             }
         }
-    } else {
+    }else{
         mysqli_close($myDbConn);
         header("Location: ../login.php?alreadyTriedU=1");
     }

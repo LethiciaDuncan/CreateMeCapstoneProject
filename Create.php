@@ -15,6 +15,9 @@ include_once('header.php');
 </head>
 
 <body>
+    <button class="btn btn-light btn-lg" id="LogOutButton" onclick="redirectLogout()">
+        LogOut
+    </button>
     <div id="img" class="creation">
         <img id="bodyImg" src="Images/blob.png" />
         <img id="eyeImg" src="Images/eyes1.png" />
@@ -47,9 +50,9 @@ include_once('header.php');
             <button onclick="nextMouthImg()" class="rightMouthButton"></button>
         </div>
         <div class="item10">
-        <button class="btn btn-light btn-lg" id="resetButton">
-        Reset
-        </button>
+            <button onclick="reset()"  class="btn btn-light btn-lg" id="resetButton">
+                Reset
+            </button>
         </div>
         <div class="item11">
         <form>
@@ -82,6 +85,25 @@ include_once('header.php');
     var hatImgs = ["Images/hat1.png", "Images/hat2.png", "Images/hat3.png", "Images/hat4.png", "Images/hat6.png","Images/hat7.png","Images/hat5.png"];
     var currentMouth = 0;
     var mouthImgs = ["Images/mouth1.png", "Images/mouth2.png", "Images/mouth3.png", "Images/mouth4.png",  "Images/mouth5.png", "Images/mouth6.png", "Images/mouth7.png", "Images/mouth8.png", "Images/mouth9.png"];
+
+    //reset image options
+    function reset() {
+        //reset body
+        currentBody = (currentBody - currentBody) % bodyImgs.length;
+            changeBodyImg();
+            //reset eyes
+            currentEye = (currentEye - currentEye) % eyeImgs.length;
+            changeEyeImg();
+        //reset hat
+           currentHat = (currentHat - currentHat) % hatImgs.length;
+            changeHatImg();
+        //reset mouth
+        currentMouth = (currentMouth - currentMouth) % mouthImgs.length;
+        //changes img
+        changeMouthImg();
+
+            console.log("clicked");
+    }
 
     //change body Image to previous
     function prevBodyImg() {
@@ -151,25 +173,6 @@ include_once('header.php');
         var img = document.getElementById("mouthImg");
         img.src = mouthImgs[currentMouth];
     }
-     //reset image options
-    function reset() {
-        document.getElementById("resetButton").addEventListener("click", function () {
-            //reset body
-            currentBody = (currentBody * 0) % bodyImgs.length;
-            changeBodyImg();
-            //reset eyes
-            currentEye = eyeImgs[0];
-            changeEyeImg();
-        //reset hat
-           currentHat = 0;
-            changeHatImg();
-        //reset mouth
-                currentMouth = 0;
-            changeMouthImg();
-
-            console.log("clicked");
-        });
-        }
     //save created image to database
     function save() {
         //getting div
@@ -190,7 +193,7 @@ include_once('header.php');
                 console.error(error);
             })
         })
-        
+            function redirectLogout() { window.location.href = "index.php"; }
     }
 </script>
 

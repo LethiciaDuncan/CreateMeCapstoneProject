@@ -14,20 +14,23 @@ include_once('header.php');
 </head>
 
 <body>
-    <h1 id="title"> Rankings</h1>
-    <div class="section1"></div>
-    <div class="content">
-        <div id="casualContent"></div>
-        <div class="hide" id="spookyContent"></div>
-        <div class="hide" id="cuteContent"></div>
-    </div>
+    <button class="btn btn-light btn-lg" id="LogOutButton" onclick="redirectLogout()">
+        LogOut
+    </button>
+    <h1 id="title4"> Rankings</h1>
     <div class="dropdown">
-        <button class="dropbtn">Dropdown</button>
+        <button class="dropbtn">Category</button>
         <div class="dropdown-content">
             <button id="casualButton">Casual</button>
             <button id="spookyButton">Spooky</button>
             <button id="cuteButton">Cute</button>
         </div>
+    </div>
+    <div class="section1"></div>
+    <div class="content">
+        <div id="casualContent">Test</div>
+        <div class="hide" id="spookyContent">test2</div>
+        <div class="hide" id="cuteContent">test3</div>
     </div>
 
         <img id="backgroundImg" src="Images/testdesign.png" />
@@ -68,4 +71,5 @@ include_once('header.php');
         spooky.style.display = "none";
         cute.style.display = "block";
     })
+        function redirectLogout() { window.location.href = "login.php"; }
 </script>
