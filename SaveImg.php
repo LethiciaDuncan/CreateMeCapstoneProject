@@ -1,19 +1,15 @@
 <?php
-if(isset($_Post['imgUrl'])) {
-    $imgUrl = $_Post['imgURL'];
+    $imageData = $_POST['imgData'];
 
-    $imageData = str_replace('data:image/png;base64,', '', $imgUrl);
+    $imageData = str_replace('data:image/png;base64,', '', $imageData);
 
-    $imageDataDecoded = base64_decode($imageData);
+    $imageData = base64_decode($imageData);
+
+    $filename = uniqid() . '.png';
 
     $path = 'Creation/';
 
-    $filename = $path . 'image_' . uniqid() . '.png';
+    $images = file_put_contents($path . $filename, $imageData);
 
-    if(file_put_contents($filename, $imageDataDecoded)){
-        echo 'Image saved';
-    }else{
-        echo 'error saving image';
-    }
-}
+$CreationPath = $_POST[$images];
 ?>

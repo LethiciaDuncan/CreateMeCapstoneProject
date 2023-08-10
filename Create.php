@@ -11,7 +11,7 @@ include_once('header.php');
                   font-family: 'Nosifer', cursive;
             }
     </style>
-    <script src="Js/html2canvas.min.js"> </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.5.0-beta4/html2canvas.min.js"> </script>
 </head>
 
 <body>
@@ -55,7 +55,7 @@ include_once('header.php');
             </button>
         </div>
         <div class="item11">
-        <form>
+        <form method="post">
          <h2>Category</h2>
          <input type="radio" id="Casual" name="catergory" value="Casual" />
          <label for="Casual">Casual</label><br />
@@ -67,7 +67,7 @@ include_once('header.php');
          <label for="None">None</label><br /> 
         </form></div>
         <div class="item12">
-        <button onclick="save" class="btn btn-light btn-lg" id="saveButton">
+        <button onclick="save()" class="btn btn-light btn-lg" id="saveButton">
          Save
         </button>
         </div>
@@ -86,6 +86,27 @@ include_once('header.php');
     var currentMouth = 0;
     var mouthImgs = ["Images/mouth1.png", "Images/mouth2.png", "Images/mouth3.png", "Images/mouth4.png",  "Images/mouth5.png", "Images/mouth6.png", "Images/mouth7.png", "Images/mouth8.png", "Images/mouth9.png"];
 
+    //save img
+    function save() {
+        const createdImg = document.getElementById("img");
+        //creating canvas
+        html2canvas(createdImg).then(function (canvas) {
+            var imgData = canvas.toDataURL('image/png');
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', 'SaveImg.php', true);
+            xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+                    alert("saved");
+                    }
+                };
+
+            xhr.send('imgData=' + encodeURIComponent(imgData));
+        });
+    }
+
+    function redirectLogout() { window.location.href = "index.php"; }
+    
     //reset image options
     function reset() {
         //reset body
@@ -101,8 +122,6 @@ include_once('header.php');
         currentMouth = (currentMouth - currentMouth) % mouthImgs.length;
         //changes img
         changeMouthImg();
-
-            console.log("clicked");
     }
 
     //change body Image to previous
@@ -172,28 +191,6 @@ include_once('header.php');
     function changeMouthImg() {
         var img = document.getElementById("mouthImg");
         img.src = mouthImgs[currentMouth];
-    }
-    //save created image to database
-    function save() {
-        //getting div
-        var createdImg = document.getElementById("img");
-        //converting to canvas
-        html2canvas(createdImg).then(function (canvas) {
-                const imgUrl = canvas.toDataURL("test/png");
-
-            fetch('SaveImg.php', {
-                method: "Post",
-                headers: {
-                   'Content-Type': 'application/x-www-form-urlencoded' 
-                },
-                body: 'imgUrl=' + encodedURIComponent(imgUrl)
-            }).then(function (response) {
-                console.log(response);
-            }).catch(function (error) {
-                console.error(error);
-            })
-        })
-            function redirectLogout() { window.location.href = "index.php"; }
     }
 </script>
 

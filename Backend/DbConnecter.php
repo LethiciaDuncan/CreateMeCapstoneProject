@@ -38,10 +38,14 @@ function getUser($dbConn, $UserId)
 
 function deleteUser($dbConn, $Username)
 {
-    $query = "delete from users user where user.Username =" . $Username;
+    $query = "delete from users where user.Username =" . $Username;
     return @mysqli_query($dbConn, $query);
 }
 
-
+function saveCreation($dbConn,$UserId ,$CreationPath, $Category){
+    $query = "insert into Image(UserId, CreationPath, Category)
+values ('" . $UserId .  "', '"  . $CreationPath . "', '" . $Category . "')";
+    return @mysqli_query($dbConn, $query);
+}
 
 ?>
