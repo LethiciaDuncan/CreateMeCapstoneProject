@@ -7,12 +7,16 @@
     color: #70e000;
     z-index: 2;
 }
-#title2{
-    font-size: 35px;
-    min-height: 35%;
+#title2 {
+    position: absolute;
+    text-align: center;
+    font-size: 50px;
+    min-height: 50%;
     text-shadow: 0 0 3px #deaaff, 0 0 5px #d8bbff;
     color: #70e000;
-    text-align: center;
+    left: 45%;
+    top: 3%;
+    z-index: 2;
 }
 
 #title3 {
@@ -58,6 +62,12 @@ body {
 
 }
 
+#createBody {
+    background-image: linear-gradient(to bottom,#3e1f47, #4d194d,#772D8B,#70e000);
+    background-repeat: no-repeat;
+    background-position: right top;
+    height: 880px;
+}
 .signForm {
     position: relative;
     text-align: center;
@@ -183,28 +193,57 @@ header {
 }
 
 #resetButton {
+    position:absolute;
     background-color: #7A6174;
-    width: 45%;
-    height: 45%;
+    width: 15%;
+    height: 15%;
     font-size: 30px;
-    margin-left: 100px;
     cursor: pointer;
+    bottom: -6%;
+    left: 10%;
     z-index: 3;
 }
+
 #saveButton {
+    position: absolute;
     background-color: #7A6174;
-    width: 45%;
-    height: 45%;
+    width: 15%;
+    height: 15%;
     font-size: 30px;
-    margin-left: 250px;
     cursor: pointer;
+    bottom: -6%;
+    left: 80%;
+    z-index: 3;
+}
+
+#musicButton {
+    position: absolute;
+    left:53%;
+    top:19%;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: maroon;
+    color: #70e000;
+    cursor:pointer;
     z-index:3;
 }
+
+.hat {
+    position:absolute;
+    top:30%;
+    left: 73%;
+    width: 5%;
+    height: 5%;
+    color: aliceblue;
+}
+
 .leftHatButton {
-    position:relative;
+    position:absolute;
     width: 0;
     height: 0;
-    margin-left: 60px;
+    left:80%;
+    top: 30%;
     background-color: transparent;
     border-top: 20px solid transparent;
     border-bottom: 20px solid transparent;
@@ -217,10 +256,11 @@ header {
 
 
 .rightHatButton {
-    position: relative;
+    position: absolute;
     width: 0;
     height: 0;
-    margin-left: 80px;
+    top: 30%;
+    left: 90%;
     background-color: transparent;
     border-top: 20px solid transparent;
     border-bottom: 20px solid transparent;
@@ -230,11 +270,21 @@ header {
     overflow: hidden;
 }
 
+.eyes {
+    position: absolute;
+    top: 45%;
+    left: 73%;
+    width: 5%;
+    height: 5%;
+    color: aliceblue;
+}
+
 .leftEyeButton {
-    position: relative;
+    position: absolute;
     width: 0;
     height: 0;
-    margin-left: 60px;
+    top: 45%;
+    left: 80%;
     background-color: transparent;
     border-top: 20px solid transparent;
     border-bottom: 20px solid transparent;
@@ -247,10 +297,11 @@ header {
 
 
 .rightEyeButton {
-    position: relative;
+    position: absolute;
     width: 0;
     height: 0;
-    margin-left: 80px;
+    top: 45%;
+    left: 90%;
     background-color: transparent;
     border-top: 20px solid transparent;
     border-bottom: 20px solid transparent;
@@ -259,12 +310,21 @@ header {
     cursor: pointer;
     overflow: hidden;
 }
+.body {
+    position: absolute;
+    top: 60%;
+    left: 73%;
+    width: 5%;
+    height: 5%;
+    color: aliceblue;
+}
 
 .leftBodyButton {
-    position: relative;
+    position: absolute;
     width: 0;
     height: 0;
-    margin-left: 60px;
+    top: 60%;
+    left: 80%;
     background-color: transparent;
     border-top: 20px solid transparent;
     border-bottom: 20px solid transparent;
@@ -277,10 +337,11 @@ header {
 
 
 .rightBodyButton {
-    position: relative;
+    position: absolute;
     width: 0;
     height: 0;
-    margin-left: 80px;
+    top: 60%;
+    left: 90%;
     background-color: transparent;
     border-top: 20px solid transparent;
     border-bottom: 20px solid transparent;
@@ -289,11 +350,22 @@ header {
     cursor: pointer;
     overflow: hidden;
 }
+
+.mouth {
+    position: absolute;
+    top: 75%;
+    left: 73%;
+    width: 5%;
+    height: 5%;
+    color: aliceblue;
+}
+
 .leftMouthButton {
-    position: relative;
+    position: absolute;
     width: 0;
     height: 0;
-    margin-left: 60px;
+    top: 75%;
+    left: 80%;
     background-color: transparent;
     border-top: 20px solid transparent;
     border-bottom: 20px solid transparent;
@@ -306,10 +378,11 @@ header {
 
 
 .rightMouthButton {
-    position: relative;
+    position: absolute;
     width: 0;
     height: 0;
-    margin-left: 80px;
+    top: 75%;
+    left: 90%;
     background-color: transparent;
     border-top: 20px solid transparent;
     border-bottom: 20px solid transparent;
@@ -360,80 +433,35 @@ header {
     height: 10%;
     font-size: 25px;
 }
-.grid-container {
-    display: grid;
-    position:relative;
-    align-items: center;
-    grid-template-columns: auto auto auto;
-    gap: 5px;
-    padding: 10px;
 
+
+#createForm {
+    position: absolute;
+    cursor: pointer;
+    font-size: 20px;
+    left:40%;
+    bottom: -18%;
 }
 
-    .grid-container div {
-        position: relative;
-        text-align: center;
-        padding: 10px 0;
-        font-size: 25px;
+#createForm #categoryName{
+    font-size:25px;
+    color:aliceblue;
+}
+
+#createForm #Casual {
+        color:aqua;
+}
+
+    #createForm #Spooky {
+        color:blueviolet;
+    }
+
+    #createForm #Cute {
+        color:deeppink;
     }
 
 
-.item1 {
-    grid-column-start: 1;
-    grid-column-end: 4;
-}
-
-.item2 {
-    justify-content:center;
-    height:80px;
-    grid-column-start: 1;
-    grid-column-end: 3;
-}
-
-.item3 {
-    position: relative;
-    margin-left: 350px;
-}
-
-.item4 {
-    height: 80px;
-    grid-column-start: 1;
-    grid-column-end: 3;
-}
-.item5 {
-    position: relative;
-    margin-left: 350px;
-}
-
-.item6 {
-    height: 80px;
-    grid-column-start: 1;
-    grid-column-end: 3;
-}
-
-.item7 {
-    position: relative;
-    margin-left: 350px;
-}
-
-.item8 {
-    height: 80px;
-    grid-column-start: 1;
-    grid-column-end: 3;
-}
-.item9 {
-    position: relative;
-    margin-left: 350px;
-}
-
-.item11 form {
-    cursor: pointer;
-    margin-left: 300px;
-    font-size: 10px;
-}
-
-
-.item11 h2 {
+h2 {
     font-size: 15px;
 }
 profileNavBar {

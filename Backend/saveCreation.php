@@ -1,33 +1,30 @@
 <?php
 
-include_once "DbConnector.php";
+include_once "../Backend/DbConnecter.php";
+
 
 header('Content-Type: application/json');
 
 
 
+$CreationPath = $_POST["CreationPath"];
+$Category = $_POST['Category'];
+
+$dbConn = ConnGet();
+
 
 if ($_SESSION['signedIn'] == True) {
-    $myDbConn = ConnGet();
     $UserId = $_SESSION['UserId'];
-    $CreationPath = $_GET['CreationPath'];
-    $Catergory = $_GET['Catergory'];
 
-    $dataset = saveCreation($myDbConn, $userId, $CreationPath, $Catergory);
-
-
+    saveCreation($dbConn,$UserId ,$CreationPath, $Category);
+    mysqli_close($dbConn);
+    header("Location: ../Create.php");
 
 
-    if ($dataset) {
-        mysqli_close($myDbConn);
-        echo True;
-    } else {
-        mysqli_close($myDbConn);
-
-        //send them back 
-        header("Location: ../index.php");
-    }
-
+}else{
+    mysqli_close($dbConn);
+    header("Location: ../Create.php");
+    echo("Can not save you are not signed in");
 }
 
 

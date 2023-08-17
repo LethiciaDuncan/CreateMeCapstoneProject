@@ -14,7 +14,14 @@ include_once('header.php');
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.5.0-beta4/html2canvas.min.js"> </script>
 </head>
 
-<body>
+<body id="createBody">
+   
+    <audio id="musicSound">
+        <source src="Audio/piano.mp3" type="audio/mp3" />
+    </audio>
+        <button id="musicButton" onclick="music()">
+           music
+        </button>
     <button class="btn btn-light btn-lg" id="LogOutButton" onclick="redirectLogout()">
         LogOut
     </button>
@@ -27,56 +34,50 @@ include_once('header.php');
     <div class="section1"></div>
     <div class="section2"></div>
     <div class="section3"></div>
-    <div class="grid-container">
-        <div class="item1"><h1 id="title2"> Create</h1></div>
-        <div class="item2"></div>
-        <div class="item3"> hat
+
+        <h1 id="title2"> Create</h1>
+        <p class="hat"> hat </p>
             <button onclick="prevHatImg()" class="leftHatButton"></button>
             <button onclick="nextHatImg()" class="rightHatButton"></button>
-        </div>
-        <div class="item4"></div>
-        <div class="item5">eyes
+
+        <p class="eyes">eyes </p>
             <button onclick="prevEyeImg()" class="leftEyeButton"></button>
             <button onclick="nextEyeImg()" class="rightEyeButton"></button>
-        </div>
-        <div class="item6"></div>
-        <div class="item7">body
+   
+        <p class="body">body </p>
             <button onclick="prevBodyImg()" class="leftBodyButton"></button>
             <button onclick="nextBodyImg()" class="rightBodyButton"></button>
-        </div>
-        <div class="item8"></div>
-        <div class="item9">mouth
+    
+        <p class="mouth">mouth </p>
             <button onclick="prevMouthImg()" class="leftMouthButton"></button>
             <button onclick="nextMouthImg()" class="rightMouthButton"></button>
-        </div>
-        <div class="item10">
+            
             <button onclick="reset()"  class="btn btn-light btn-lg" id="resetButton">
                 Reset
             </button>
-        </div>
-        <div class="item11">
-        <form method="post">
-         <h2>Category</h2>
-         <input type="radio" id="Casual" name="catergory" value="Casual" />
-         <label for="Casual">Casual</label><br />
-         <input type="radio" id="Spooky" name="catergory" value="Spooky" />
-        <label for="Spooky">Spooky</label><br />
-        <input type="radio" id="Cute" name="catergory" value="Cute" />
-        <label for="Cute">Cute</label><br />
-        <input type="radio" id="None" name="catergory" value="None" />
-         <label for="None">None</label><br /> 
-        </form></div>
-        <div class="item12">
-        <button onclick="save()" class="btn btn-light btn-lg" id="saveButton">
-         Save
-        </button>
-        </div>
-    </div>
+            <audio id="buttonSound">
+                <source src="Audio/clickSound.mp3" type="audio/mp3" />
+            </audio>
+            <form id="createForm" action="Backend/saveCreation.php" method="post">
+                <h2 id="categoryName" >Category</h2>
+                <input type="radio" id="Casual" name="Category" value="Casual" />
+                <label for="Casual">Casual</label><br />
+                <input type="radio" id="Spooky" name="Category" value="Spooky" />
+                <label for="Spooky">Spooky</label><br />
+                <input type="radio" id="Cute" name="Category" value="Cute" />
+                <label for="Cute">Cute</label><br />
+                <input type="radio" id="None" name="Category" value="None" />
+                <label for="None">None</label><br />
+
+            </form>
+
+             <button onclick="save()" method="post" class="btn btn-light btn-lg" id="saveButton">
+                    Save
+             </button>
 </body>
 </html>
 
 <script>
-
     var currentBody = 0;
     var bodyImgs = ["Images/blob.png", "Images/circle.png", "Images/oval.png", "Images/square.png", "Images/triangle.png"];
     var currentEye = 0;
@@ -86,10 +87,25 @@ include_once('header.php');
     var currentMouth = 0;
     var mouthImgs = ["Images/mouth1.png", "Images/mouth2.png", "Images/mouth3.png", "Images/mouth4.png",  "Images/mouth5.png", "Images/mouth6.png", "Images/mouth7.png", "Images/mouth8.png", "Images/mouth9.png"];
 
+    function music() {
+        var on = false;
+        const sound = document.getElementById("musicSound");
+        const button = document.getElementById("musicButton");
+        if (on) {
+            sound.pause();
+            on = false;
+            button.textContent = "Music";
+        } else {
+            sound.play();
+            on = true;
+            button.textContent = "Pause";
+        }
+    }
+
     //save img
     function save() {
-        const createdImg = document.getElementById("img");
-        //creating canvas
+          const createdImg = document.getElementById("img");
+        //creating canvas 
         html2canvas(createdImg).then(function (canvas) {
             var imgData = canvas.toDataURL('image/png');
             var xhr = new XMLHttpRequest();
@@ -102,7 +118,8 @@ include_once('header.php');
                 };
 
             xhr.send('imgData=' + encodeURIComponent(imgData));
-        });
+            document.getElementById("createForm").submit();
+            });
     }
 
     function redirectLogout() { window.location.href = "index.php"; }
@@ -138,8 +155,10 @@ include_once('header.php');
     }
     //change which body img is displayed
     function changeBodyImg() {
+        const sound = document.getElementById("buttonSound");
         var img = document.getElementById("bodyImg");
         img.src = bodyImgs[currentBody];
+        sound.play();
     }
     //change eye Image to previous
     function prevEyeImg() {
@@ -155,8 +174,10 @@ include_once('header.php');
     }
     //change which eye img is displayed
     function changeEyeImg() {
+        const sound = document.getElementById("buttonSound");
         var img = document.getElementById("eyeImg");
         img.src = eyeImgs[currentEye];
+        sound.play();
     }
     //change hat Image to previous
     function prevHatImg() {
@@ -172,8 +193,10 @@ include_once('header.php');
     }
     //change which hat img is displayed
     function changeHatImg() {
+        const sound = document.getElementById("buttonSound");
         var img = document.getElementById("hatImg");
         img.src = hatImgs[currentHat];
+        sound.play();
     }
     //change mouth Image to previous
     function prevMouthImg() {
@@ -189,8 +212,10 @@ include_once('header.php');
     }
     //change which mouth img is displayed
     function changeMouthImg() {
+        const sound = document.getElementById("buttonSound");
         var img = document.getElementById("mouthImg");
         img.src = mouthImgs[currentMouth];
+        sound.play();
     }
 </script>
 

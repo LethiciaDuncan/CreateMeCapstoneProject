@@ -36,11 +36,12 @@ function getUser($dbConn, $UserId)
     return @mysqli_query($dbConn, $query);
 }
 
-function deleteUser($dbConn, $Username)
+function checkifImageExists($dbConn, $CreationPath)
 {
-    $query = "delete from users where user.Username =" . $Username;
+    $query = "select * from image where CreationPath = '" . $CreationPath . "' ;";
     return @mysqli_query($dbConn, $query);
 }
+
 
 function saveCreation($dbConn,$UserId ,$CreationPath, $Category){
     $query = "insert into Image(UserId, CreationPath, Category)
