@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 include_once "../Backend/DbConnecter.php";
 
@@ -6,25 +7,42 @@ include_once "../Backend/DbConnecter.php";
 header('Content-Type: application/json');
 
 
-
-$CreationPath = $_POST["CreationPath"];
 $Category = $_POST['Category'];
 
 $dbConn = ConnGet();
 
+if ($Category == null){
+    $Category = "None";
 
-if ($_SESSION['signedIn'] == True) {
-    $UserId = $_SESSION['UserId'];
+    if ($_SESSION['signedIn'] == True) {
+        $UserId = $_SESSION['UserId'];
+        $CreationPath = $_SESSION['CreationPath'];
 
-    saveCreation($dbConn,$UserId ,$CreationPath, $Category);
-    mysqli_close($dbConn);
-    header("Location: ../Create.php");
+        saveCreation($dbConn, $UserId, $CreationPath, $Category);
+        mysqli_close($dbConn);
+        header("Location: ../Create.php");
 
 
+    } else {
+        mysqli_close($dbConn);
+        header("Location: ../Create.php");
+        echo ("Can not save you are not signed in");
+    }
 }else{
-    mysqli_close($dbConn);
-    header("Location: ../Create.php");
-    echo("Can not save you are not signed in");
+    if ($_SESSION['signedIn'] == True) {
+        $UserId = $_SESSION['UserId'];
+        $CreationPath = $_SESSION['CreationPath'];
+
+        saveCreation($dbConn, $UserId, $CreationPath, $Category);
+        mysqli_close($dbConn);
+        header("Location: ../Create.php");
+
+
+    } else {
+        mysqli_close($dbConn);
+        header("Location: ../Create.php");
+        echo ("Can not save you are not signed in");
+    }
 }
 
 

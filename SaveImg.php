@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 
 $imageData = $_POST['imgData'];
 
@@ -9,22 +9,13 @@ $imageData = base64_decode($imageData);
 
 $filename = uniqid() . '.png';
 
-$path = 'Creation/';
+$path = 'Creation/' . $filename;
 
-$name = file_put_contents($path . $filename, $imageData);
+file_put_contents($path, $imageData);
+
+
+$_SESSION['CreationPath'] = $path;
+
+
 
 ?>
-
-
-<!Doctype html>
-<html lang="en">
-<body>
-    <form id="test" action="Backend/saveCreation.php"  method="post">
-        <input id="CreationPath" name="CreationPath" value="<?php echo $name; ?>" />
-    </form>
-</body>
-</html>
-
-<script>
-         document.getElementById("test").submit();
-</script>

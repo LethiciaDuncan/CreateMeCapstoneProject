@@ -71,9 +71,9 @@ include_once('header.php');
 
             </form>
 
-             <button onclick="save()" method="post" class="btn btn-light btn-lg" id="saveButton">
-                    Save
-             </button>
+    <button onclick="save()" method="post" class="btn btn-light btn-lg" id="saveButton">
+        Save
+    </button>
 </body>
 </html>
 
