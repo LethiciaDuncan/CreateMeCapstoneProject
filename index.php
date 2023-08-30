@@ -1,5 +1,6 @@
 <?php
-$_SESSION['signedIn'] = False;
+ 
+//session_destroy();
 ?>
 <!Doctype html>
 <html lang="en">
@@ -15,6 +16,7 @@ $_SESSION['signedIn'] = False;
 
 <body>
     <h1 id="title"> Welcome</h1>
+    <p>Create unique monsters</p>
     <button class="btn btn-light btn-lg" id="LogButton" onclick="redirectLogin()">
         Login
     </button>
@@ -23,9 +25,6 @@ $_SESSION['signedIn'] = False;
     </button>
 
     <img id="backgroundImg" src="Images/testdesign.png" />
-    <?php
-include_once('footer.php');
-    ?>
 </body>
 
 </html>

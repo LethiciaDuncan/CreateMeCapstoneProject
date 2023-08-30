@@ -19,9 +19,7 @@ include_once('header.php');
     <audio id="musicSound">
         <source src="Audio/piano.mp3" type="audio/mp3" />
     </audio>
-        <button id="musicButton" onclick="music()">
-           music
-        </button>
+    <button onclick="music()"  id="musicButton"></button>
     <button class="btn btn-light btn-lg" id="LogOutButton" onclick="redirectLogout()">
         LogOut
     </button>
@@ -79,27 +77,28 @@ include_once('header.php');
 
 <script>
     var currentBody = 0;
-    var bodyImgs = ["Images/blob.png", "Images/circle.png", "Images/oval.png", "Images/square.png", "Images/triangle.png"];
+    var bodyImgs = ["Images/blob.png", "Images/circle.png", "Images/oval.png", "Images/square.png", "Images/triangle.png", "Images/heart.png", "Images/idk.png"];
     var currentEye = 0;
-    var eyeImgs = ["Images/eyes1.png", "Images/eyes2.png", "Images/eyes3.png", "Images/eyes4.png", "Images/eyes5.png", "Images/eyes6.png"];
+    var eyeImgs = ["Images/eyes1.png", "Images/eyes2.png", "Images/eyes3.png", "Images/eyes4.png", "Images/eyes5.png", "Images/eyes6.png","Images/eyes7.png", "Images/eyes8.png"];
     var currentHat = 0;
-    var hatImgs = ["Images/hat1.png", "Images/hat2.png", "Images/hat3.png", "Images/hat4.png", "Images/hat6.png","Images/hat7.png","Images/hat5.png"];
+    var hatImgs = ["Images/hat1.png", "Images/hat2.png", "Images/hat3.png", "Images/hat4.png", "Images/hat6.png","Images/hat7.png","Images/hat8.png","Images/hat5.png"];
     var currentMouth = 0;
     var mouthImgs = ["Images/mouth1.png", "Images/mouth2.png", "Images/mouth3.png", "Images/mouth4.png",  "Images/mouth5.png", "Images/mouth6.png", "Images/mouth7.png", "Images/mouth8.png", "Images/mouth9.png"];
 
     function music() {
-        var on = false;
         const sound = document.getElementById("musicSound");
         const button = document.getElementById("musicButton");
-        if (on) {
-            sound.pause();
-            on = false;
-            button.textContent = "Music";
-        } else {
-            sound.play();
-            on = true;
-            button.textContent = "Pause";
-        }
+        button.textContent = "Music";
+        on = false;
+            if (on == false) {
+                sound.play();
+                button.textContent = "Pause";
+                on = true;
+            } else{
+                sound.pause();
+                button.textContent = "Play";
+            }
+
     }
 
     //save img

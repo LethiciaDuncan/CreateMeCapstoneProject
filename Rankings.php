@@ -28,9 +28,9 @@ include_once('header.php');
     </div>
     <div class="section1"></div>
     <div class="content">
-        <div id="casualContent">Test</div>
-        <div class="hide" id="spookyContent">test2</div>
-        <div class="hide" id="cuteContent">test3</div>
+        <div id="casualContent"></div>
+        <div class="hide" id="spookyContent"></div>
+        <div class="hide" id="cuteContent"></div>
     </div>
 
         <img id="backgroundImg" src="Images/testdesign.png" />
@@ -71,5 +71,73 @@ include_once('header.php');
         spooky.style.display = "none";
         cute.style.display = "block";
     })
-        function redirectLogout() { window.location.href = "login.php"; }
+    function redirectLogout() { window.location.href = "login.php"; }
+
+    var request = new XMLHttpRequest();
+    window.onload = (event) => {
+        imgCasualPath()
+        imgSpookyPath()
+        imgCutePath()
+    }
+
+
+    function imgCasualPath() {
+        fetch('./Backend/getCasualCategory.php')
+            .then(response => response.json())
+            .then(Casual => {
+                const imgs = document.getElementById("casualContent");
+                Casual.forEach(image => {
+                    const img = document.createElement("img");
+                    img.src = image;
+
+                    img.width = 200;
+                    img.height = 200;
+
+
+                    imgs.appendChild(img);
+                })
+             })
+         
+
+    }
+
+    function imgSpookyPath() {
+        fetch('./Backend/getSpookyCategory.php')
+            .then(response => response.json())
+            .then(Spooky => {
+                const imgs = document.getElementById("spookyContent");
+                Spooky.forEach(image => {
+                    const img = document.createElement("img");
+                    img.src = image;
+
+                    img.width = 200;
+                    img.height = 200;
+
+
+                    imgs.appendChild(img);
+                })
+             })
+
+
+    }
+
+    function imgCutePath() {
+        fetch('./Backend/getCuteCategory.php')
+            .then(response => response.json())
+            .then(Cute => {
+                const imgs = document.getElementById("cuteContent");
+                Cute.forEach(image => {
+                    const img = document.createElement("img");
+                    img.src = image;
+
+                    img.width = 200;
+                    img.height = 200;
+
+
+                    imgs.appendChild(img);
+                })
+             })
+
+
+    }
 </script>

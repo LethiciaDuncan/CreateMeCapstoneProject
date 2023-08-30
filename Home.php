@@ -10,13 +10,17 @@ include_once('header.php');
             body{
                   font-family: 'Nosifer', cursive;
             }
+
     </style>
 </head>
 
 <body>
     <h1 id="title4"> Home</h1>
    <div class="section1"></div>
+    <div id="creationContent2">
 
+       
+    </div>
     <button class="btn btn-light btn-lg" id="LogOutButton" onclick="redirectLogout()">
         LogOut
     </button>
@@ -27,5 +31,45 @@ include_once('header.php');
 </html>
 
 <script>
-        function redirectLogout() { window.location.href = "index.php"; }
+    //function redirectLogout() { window.location.href = "index.php"; }
+  
+    var request = new XMLHttpRequest();
+    window.onload = (event) => {
+        imgPath()
+    }
+
+      function imgPath() {
+        fetch('./Backend/getAllCreation.php')
+            .then(response => response.json())
+            .then(imagePath => {
+                const imgs = document.getElementById("creationContent2");
+                imagePath.forEach(image => {
+                    const img = document.createElement("img");
+                    img.src = image;
+
+                    img.width = 200;
+                    img.height = 200;
+
+                    const container = document.createElement("div");
+                    container.classList.add('contain');
+                    img.classList.add('contain');
+                    container.appendChild(img);
+
+                    const buttonContainer = document.createElement("div");
+                    buttonContainer.classList.add("buttonContainer");
+                    const test = document.createElement("button");
+                    test.classList.add("buttonImage", "likeButton");
+                    buttonContainer.appendChild(test);
+
+                    const test2 = document.createElement("button");
+                    test2.classList.add("buttonImage", "favButton");
+                    buttonContainer.appendChild(test2);
+                    /*imgs.appendChild(img);*/
+                    container.appendChild(buttonContainer);
+                    imgs.appendChild(container);
+                })
+            })
+
+      }
+
 </script>

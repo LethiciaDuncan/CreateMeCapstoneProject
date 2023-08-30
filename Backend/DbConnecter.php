@@ -42,6 +42,50 @@ function checkifImageExists($dbConn, $CreationPath)
     return @mysqli_query($dbConn, $query);
 }
 
+function getUserCreation($dbConn, $UserId){
+    $query = "select CreationPath from image where UserId = '" . $UserId . "' ;";
+    return @mysqli_query($dbConn, $query);
+}
+
+function getAllCreation($dbConn)
+{
+    $query = "select CreationPath from image";
+    return @mysqli_query($dbConn, $query);
+}
+
+
+function getUserLikes($dbConn, $UserId){
+    $query = "select LikesAndFavs.Likes, Images.CreationPath, Images.UserId, records.Difficulty
+from LikesAndFavs as LikesAndFavs
+inner join Images as Images
+		on Images.ImageId = LikesAndFavs.ImageId
+inner join Users as Users
+		on Users.UserId = LikesAndFavs.UserId
+where LikesAndFavs.UserId=" . $UserId . ";";
+    return @mysqli_query($dbConn, $query);
+}
+
+function getUserFaves($dbConn, $UserId){
+     $query = "select LikesAndFavs.Favs, Images.CreationPath, Images.UserId, records.Difficulty
+from LikesAndFavs as LikesAndFavs
+inner join Images as Images
+		on Images.ImageId = LikesAndFavs.ImageId
+inner join Users as Users
+		on Users.UserId = LikesAndFavs.UserId
+where LikesAndFavs.UserId=" . $UserId . ";";
+    return @mysqli_query($dbConn, $query);
+}
+
+function getCategories($dbConn){
+     $query = "select Category from image";
+    return @mysqli_query($dbConn, $query);
+}
+
+function getCertainCreations($dbConn, $Category)
+{
+    $query = "select CreationPath from image where Category = '" . $Category . "' ;";
+    return @mysqli_query($dbConn, $query);
+}
 
 function saveCreation($dbConn,$UserId ,$CreationPath, $Category){
     $query = "insert into Image(UserId, CreationPath, Category)

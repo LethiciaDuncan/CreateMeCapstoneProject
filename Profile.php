@@ -36,9 +36,9 @@ include_once('header.php');
         </div>
     <div id="profileLine"> </div>
     <div class="content">
-        <div id="creationContent">HI</div>
-        <div class="hide" id="likeContent"> Test</div>
-        <div class="hide" id="favoriteContent">Test 2</div>
+        <div id="creationContent"></div>
+        <div class="hide" id="likeContent"> </div>
+        <div class="hide" id="favoriteContent"></div>
     </div>
     <img id="backgroundimg" src="Images/testdesign.png" />
 
@@ -85,6 +85,7 @@ include_once('header.php');
     var request = new XMLHttpRequest();
     window.onload = (event) => {
         loadJson()
+        imgPath()
     }
     //getting user info
     function loadJson() {
@@ -94,6 +95,7 @@ include_once('header.php');
 
 
     }
+
     //loading user info
     function loadComplete(evt) {
         var myResponse;
@@ -112,6 +114,27 @@ include_once('header.php');
         }
         myUsername += "<tr><td>";
         document.getElementById("profileUserName").innerHTML = myUsername;
+
+    }
+
+
+    //display user created images
+    function imgPath() {
+        fetch('./Backend/getUserCreation.php')
+            .then(response => response.json())
+            .then(imagePath => {
+                const imgs = document.getElementById("creationContent");
+                imagePath.forEach(image => {
+                    const img = document.createElement("img");
+                    img.src = image;
+
+                    img.width = 200;
+                    img.height = 200;
+                    
+
+                    imgs.appendChild(img);
+                })
+            })
 
     }
 </script>
