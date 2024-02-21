@@ -36,6 +36,24 @@ function getUser($dbConn, $UserId)
     return @mysqli_query($dbConn, $query);
 }
 
+function deleteUser($dbConn, $UserId)
+{
+    $query = "delete from users where UserId = '" . $UserId . "' ;";
+    return @mysqli_query($dbConn, $query);
+}
+
+function deleteCreation($dbConn, $ImageId)
+{
+    $query = "delete from image where ImageId = '" . $ImageId . "' ;";
+    return @mysqli_query($dbConn, $query);
+}
+function updateBio($dbConn, $UserId, $Bio)
+{
+    $query = "update Users SET Bio = '" . $Bio . "'
+    where UserId = '" . $UserId . "' ;";
+    return @mysqli_query($dbConn, $query);
+}
+
 function checkifImageExists($dbConn, $CreationPath)
 {
     $query = "select * from image where CreationPath = '" . $CreationPath . "' ;";
@@ -53,23 +71,56 @@ function getAllCreation($dbConn)
     return @mysqli_query($dbConn, $query);
 }
 
+function addToLikes($dbConn, $ImageId, $UserId, $Likes, $LikesNum)
+{
+    $query = "insert into LikesAndFavs(ImageId, UserId ,Likes, LikesNum)
+    values ('" . $ImageId . "', '" . $UserId . "', '" . "$Likes" . "', '" . "$LikesNum" . "')";
+    return @mysqli_query($dbConn, $query);
+}
 
+function addToFavs($dbConn, $ImageId, $UserId, $Favs, $FavsNum)
+{
+    $query = "insert into LikesAndFavs(ImageId, UserId ,Favs, FavsNum)
+    values ('" . $ImageId . "', '" . $UserId . "', '" . "$Favs" . "', '" . "$FavsNum" . "')";
+    return @mysqli_query($dbConn, $query);
+}
 function getUserLikes($dbConn, $UserId){
-    $query = "select LikesAndFavs.Likes, Images.CreationPath, Images.UserId, records.Difficulty
+    $query = "select LikesAndFavs.Likes, Image.CreationPath, Image.UserId
 from LikesAndFavs as LikesAndFavs
-inner join Images as Images
-		on Images.ImageId = LikesAndFavs.ImageId
+inner join Image as Image
+		on Image.ImageId = LikesAndFavs.ImageId
 inner join Users as Users
 		on Users.UserId = LikesAndFavs.UserId
 where LikesAndFavs.UserId=" . $UserId . ";";
     return @mysqli_query($dbConn, $query);
 }
-
-function getUserFaves($dbConn, $UserId){
-     $query = "select LikesAndFavs.Favs, Images.CreationPath, Images.UserId, records.Difficulty
+function getUserLikesName($dbConn, $UserId)
+{
+    $query = "select LikesAndFavs.Likes, Image.CreationPath, Image.UserId, Image.Name
 from LikesAndFavs as LikesAndFavs
-inner join Images as Images
-		on Images.ImageId = LikesAndFavs.ImageId
+inner join Image as Image
+		on Image.ImageId = LikesAndFavs.ImageId
+inner join Users as Users
+		on Users.UserId = LikesAndFavs.UserId
+where LikesAndFavs.UserId=" . $UserId . ";";
+    return @mysqli_query($dbConn, $query);
+}
+function getUserFavsName($dbConn, $UserId)
+{
+    $query = "select LikesAndFavs.Favs, Image.CreationPath, Image.UserId, Image.Name
+from LikesAndFavs as LikesAndFavs
+inner join Image as Image
+		on Image.ImageId = LikesAndFavs.ImageId
+inner join Users as Users
+		on Users.UserId = LikesAndFavs.UserId
+where LikesAndFavs.UserId=" . $UserId . ";";
+    return @mysqli_query($dbConn, $query);
+}
+function getUserFavs($dbConn, $UserId){
+     $query = "select LikesAndFavs.Favs, Image.CreationPath, Image.UserId
+from LikesAndFavs as LikesAndFavs
+inner join Image as Image
+		on Image.ImageId = LikesAndFavs.ImageId
 inner join Users as Users
 		on Users.UserId = LikesAndFavs.UserId
 where LikesAndFavs.UserId=" . $UserId . ";";
@@ -87,9 +138,9 @@ function getCertainCreations($dbConn, $Category)
     return @mysqli_query($dbConn, $query);
 }
 
-function saveCreation($dbConn,$UserId ,$CreationPath, $Category){
-    $query = "insert into Image(UserId, CreationPath, Category)
-values ('" . $UserId .  "', '"  . $CreationPath . "', '" . $Category . "')";
+function saveCreation($dbConn,$UserId ,$CreationPath, $Category, $Name){
+    $query = "insert into Image(UserId, CreationPath, Category, Name)
+values ('" . $UserId .  "', '"  . $CreationPath . "', '" . $Category . "', '" . $Name ."')";
     return @mysqli_query($dbConn, $query);
 }
 

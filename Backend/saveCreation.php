@@ -8,6 +8,7 @@ header('Content-Type: application/json');
 
 
 $Category = $_POST['Category'];
+$Name = $_POST['Name'];
 
 $dbConn = ConnGet();
 
@@ -18,7 +19,7 @@ if ($Category == null){
         $UserId = $_SESSION['UserId'];
         $CreationPath = $_SESSION['CreationPath'];
 
-        saveCreation($dbConn, $UserId, $CreationPath, $Category);
+        saveCreation($dbConn, $UserId, $CreationPath, $Category, $Name);
         mysqli_close($dbConn);
         header("Location: ../Create.php");
 
@@ -33,7 +34,7 @@ if ($Category == null){
         $UserId = $_SESSION['UserId'];
         $CreationPath = $_SESSION['CreationPath'];
 
-        saveCreation($dbConn, $UserId, $CreationPath, $Category);
+        saveCreation($dbConn, $UserId, $CreationPath, $Category, $Name);
         mysqli_close($dbConn);
         header("Location: ../Create.php");
 

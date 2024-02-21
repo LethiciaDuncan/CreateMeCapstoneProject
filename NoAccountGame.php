@@ -1,5 +1,5 @@
 <?php
-include_once('header.php');
+
 ?>
 <!Doctype html>
 <html lang="en">
@@ -16,7 +16,7 @@ include_once('header.php');
 
 <body id="createBody">
 
-
+   
     <button class="btn btn-light btn-lg" id="LogOutButton" onclick="redirectLogout()">
         Back
     </button>
@@ -61,8 +61,7 @@ include_once('header.php');
         Reset
     </button>
     <audio id="buttonSound">
-        <source src="Audio/clickSound.mp3" type="audio/mp3">
-            <source>
+        <source src="Audio/clickSound.mp3" type="audio/mp3"><source>
     </audio>
     <form id="createForm" action="Backend/saveCreation.php" method="post">
         <h2 id="categoryName">Category</h2>
@@ -74,14 +73,9 @@ include_once('header.php');
         <label for="Cute">Cute</label><br />
         <input type="radio" id="None" name="Category" value="None" />
         <label for="None">None</label><br />
-
-        <div id="nameForm">
-            <label class="nameLabel" for="Name">Name</label> 
-            <input class="nameInput" type="text" id="Name" name="Name" value="" />
-        </div>
     </form>
     <button onclick="save()" method="post" class="btn btn-light btn-lg" id="saveButton">
-        Save
+        Download
     </button>
 </body>
 </html>
@@ -100,31 +94,29 @@ include_once('header.php');
     var currentMouth = 0;
     var mouthImgs = ["Images/mouth1.png", "Images/mouth2.png", "Images/mouth3.png", "Images/mouth4.png", "Images/mouth5.png", "Images/mouth6.png", "Images/mouth7.png", "Images/mouth8.png", "Images/mouth9.png"];
 
-           //save img
-    function save() {
+
+    function redirectLogout() { window.location.href = "index.php"; }
+
+         function save() {
           const createdImg = document.getElementById("img");
         //creating canvas
         html2canvas(createdImg).then(function (canvas) {
             var imgData = canvas.toDataURL('image/png');
             var xhr = new XMLHttpRequest();
-            xhr.open('POST', 'SaveImg.php', true);
+            xhr.open('POST', 'SaveImg2.php', true);
             xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
             xhr.onreadystatechange = function () {
                 if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
-                    alert("saved");
+                    alert("Downloaded");
                     }
                 };
 
             xhr.send('imgData=' + encodeURIComponent(imgData));
-            document.getElementById("createForm").submit();
             });
     }
 
-
-    function redirectLogout() { window.location.href = "index.php"; }
-
     //reset image options
-       function reset() {
+    function reset() {
         //reset body
         currentBody = (currentBody - currentBody) % bodyImgs.length;
             changeBodyImg();
@@ -261,4 +253,3 @@ include_once('header.php');
         img.src = capeImgs[currentCape];
     }
 </script>
-

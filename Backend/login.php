@@ -17,7 +17,6 @@ $password = $_POST['Password'];
 if($username == $adminUsername && $password == $adminPassword){
     $_SESSION['signedIn']=True;
     $_SESSION['signedInAdmin']= True;
-    header("Location: ../Admin.php?alreadyTriedP=1");
 }else{
 
     $myDbConn = ConnGet();
@@ -35,12 +34,12 @@ if($username == $adminUsername && $password == $adminPassword){
                 header("Location: ../Profile.php");
             }else{
                 mysqli_close($myDbConn);
-                header("Location: ../login.php?alreadyTriedP=1");
+                header("Location: ../index.php?alreadyTriedP=1");
             }
         }
     }else{
         mysqli_close($myDbConn);
-        header("Location: ../login.php?alreadyTriedU=1");
+        header("Location: ../index.php?alreadyTriedU=1");
     }
 }
 

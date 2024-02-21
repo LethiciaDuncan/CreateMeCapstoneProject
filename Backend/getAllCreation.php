@@ -10,7 +10,6 @@ if ($_SESSION['signedIn'] == True) {
     $dataset = getAllCreation($dbConn);
     $imagePath = array();
 
-
     //getting the path for the images
     while ($row = mysqli_fetch_array($dataset)) {
         $imagePath[] = $row['CreationPath'];

@@ -3,8 +3,7 @@
 include_once "../Backend/DbConnecter.php";
 
 header('Content-Type: application/json');
-
-
+$_Bio = "";
 
 //checking for sesion then retriveing userId
 if ($_SESSION['signedIn'] == True) {
@@ -15,7 +14,7 @@ if ($_SESSION['signedIn'] == True) {
 
 //getting user information
     if ($row = mysqli_fetch_array($dataset)) {
-        $myJSON = '[{"Id":"' . $userId . '","Username":"' . $row['Username'] . '","Password":"' . $row['Password'] . '"}]';
+        $myJSON = '[{"Id":"' . $userId . '","Username":"' . $row['Username'] . '","Password":"' . $row['Password'] . '","Bio":"' .$row['Bio'] .'"}]';
 
     } else {
 

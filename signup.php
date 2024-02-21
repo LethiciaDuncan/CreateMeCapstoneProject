@@ -1,10 +1,4 @@
-<?php
 
-if(array_key_exists("UserAlreadyExists", $_GET)){
-    echo "<div class='alert alert-danger'>User already exists, please try another username!</div>";
-}
-
-?>
 <!Doctype html>
 <html lang="en">
 <head>
@@ -23,11 +17,21 @@ if(array_key_exists("UserAlreadyExists", $_GET)){
     <h1  id="title"> Sign Up</h1>
 
     <form class="signForm" action="Backend/signup.php" method="post">
+        <p id="divtext">Username</p>
         <input placeholder="Enter your username"  name="Username" id="Username" required />
         <br />
+        <p id="divtext">Password</p>
         <input placeholder="Enter your Password"  name="Password" id="Password" required />
         <br />
-        <input type="submit" class="btnlog" value="Sign Up" />
+        <?php
+
+        if (array_key_exists("UserAlreadyExists", $_GET)) {
+            echo "<div class='alert alert-danger'>User already exists, please try another username!</div>";
+        }
+
+        ?>
+       <br />
+        <input type="submit" id="LogButton" value="Sign Up" />
     </form>
 </body>
 

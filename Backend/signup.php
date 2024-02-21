@@ -17,7 +17,7 @@ if (mysqli_num_rows($dataSet) != 0) {
 } else {
     addNewUser($myDbConn, $username, $password);
     mysqli_close($myDbConn);
-    header("Location: ../Login.php?AddedUser=1");
+    header("Location: ../Index.php?AddedUser=1");
 }
 
 ?>
