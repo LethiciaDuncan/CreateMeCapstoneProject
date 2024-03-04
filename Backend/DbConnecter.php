@@ -36,6 +36,10 @@ function getUser($dbConn, $UserId)
     return @mysqli_query($dbConn, $query);
 }
 
+function searchUsers($dbConn, $Username){
+    $query = "select * from users where Username = '" . $Username . "' ;";
+    return @mysqli_query($dbConn, $query);
+}
 function deleteUser($dbConn, $UserId)
 {
     $query = "delete from users where UserId = '" . $UserId . "' ;";
@@ -47,6 +51,11 @@ function deleteCreation($dbConn, $ImageId)
     $query = "delete from image where ImageId = '" . $ImageId . "' ;";
     return @mysqli_query($dbConn, $query);
 }
+function deleteCreationFromOtherTable($dbConn, $ImageId)
+{
+    $query = "delete from likesandfavs where ImageId = '" . $ImageId . "' ;";
+    return @mysqli_query($dbConn, $query);
+}
 function updateBio($dbConn, $UserId, $Bio)
 {
     $query = "update Users SET Bio = '" . $Bio . "'
@@ -54,6 +63,30 @@ function updateBio($dbConn, $UserId, $Bio)
     return @mysqli_query($dbConn, $query);
 }
 
+function checkIfAlreadyLiked($dbConn, $UserId, $ImageId){
+    $query = "select Likes from likesandfavs
+where ImageId= '" . $ImageId . "' and UserId = '" . $UserId . "' ;";
+    return @mysqli_query($dbConn, $query);
+}
+
+function checkIfAlreadyFaved($dbConn, $UserId, $ImageId)
+{
+    $query = "select Favs from likesandfavs
+where ImageId= '" . $ImageId . "' and UserId = '" . $UserId . "' ;";
+    return @mysqli_query($dbConn, $query);
+}
+function updateLikes($dbConn, $UserId, $ImageId, $LikesNum){
+    $query = "update likesandfavs SET LikesNum = '" . $LikesNum . "'
+where ImageId= '" . $ImageId . "' and UserId = '" . $UserId . "' ;";
+    return @mysqli_query($dbConn, $query);
+}
+
+function updateFavs($dbConn, $UserId, $ImageId, $FavsNum)
+{
+    $query = "update likesandfavs SET FavsNum = '" . $FavsNum . "'
+where ImageId= '" . $ImageId . "' and UserId = '" . $UserId . "' ;";
+    return @mysqli_query($dbConn, $query);
+}
 function checkifImageExists($dbConn, $CreationPath)
 {
     $query = "select * from image where CreationPath = '" . $CreationPath . "' ;";
@@ -91,7 +124,7 @@ inner join Image as Image
 		on Image.ImageId = LikesAndFavs.ImageId
 inner join Users as Users
 		on Users.UserId = LikesAndFavs.UserId
-where LikesAndFavs.UserId=" . $UserId . ";";
+where LikesAndFavs.UserId=" . $UserId . " and Likes = 1 ;";
     return @mysqli_query($dbConn, $query);
 }
 function getUserLikesName($dbConn, $UserId)
@@ -113,7 +146,7 @@ inner join Image as Image
 		on Image.ImageId = LikesAndFavs.ImageId
 inner join Users as Users
 		on Users.UserId = LikesAndFavs.UserId
-where LikesAndFavs.UserId=" . $UserId . ";";
+where LikesAndFavs.UserId=" . $UserId . " ;";
     return @mysqli_query($dbConn, $query);
 }
 function getUserFavs($dbConn, $UserId){
@@ -123,7 +156,7 @@ inner join Image as Image
 		on Image.ImageId = LikesAndFavs.ImageId
 inner join Users as Users
 		on Users.UserId = LikesAndFavs.UserId
-where LikesAndFavs.UserId=" . $UserId . ";";
+where LikesAndFavs.UserId=" . $UserId . " and Favs = 1 ;";
     return @mysqli_query($dbConn, $query);
 }
 

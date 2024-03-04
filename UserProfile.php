@@ -153,11 +153,10 @@ include_once('header.php');
         imgPath()
         imgLikesPath2()
         imgFavsPath()
-        getImageName()
     }
     //getting user info
     function loadJson() {
-        request.open('GET', './Backend/Profile.php');
+        request.open('GET', './Backend/getUserProfile2.php');
         request.onload=loadComplete;
         request.send();
 
@@ -194,7 +193,7 @@ include_once('header.php');
 
     //display user created images
         function imgPath() {
-        fetch('./Backend/getUserCreation.php')
+        fetch('./Backend/getUserCreation2.php')
             .then(response => response.json())
             .then(imagePath => {
                     const imgs = document.getElementById("creationContent");
@@ -215,13 +214,7 @@ include_once('header.php');
                     img.classList.add('contain');
                     container.appendChild(img);
 
-                    ////have the image name display with the images
-                    //const nameContainer = document.createElement("div");
-                    //nameContainer.classList.add("nameContainer");
-
-                    //const nameLabel = document.createElement("label");
-                    //nameLabel.textContent = "";
-                    // nameContainer.appendChild(nameLabel);
+                   
 
                     const buttonContainer = document.createElement("div");
                     buttonContainer.classList.add("buttonContainer");
@@ -243,7 +236,6 @@ include_once('header.php');
                     });
                     buttonContainer.appendChild(test2);
 
-                   // container.appendChild(nameContainer);
                     container.appendChild(buttonContainer);
                     imgs.appendChild(container);
                    
@@ -252,77 +244,102 @@ include_once('header.php');
 
         }
 
-    function imgLikesPath2() {
-        fetch('./Backend/getLikes.php')
-            .then(response => response.json())
-            .then(imagePath => {
-                const imgs = document.getElementById("likeContent");
-                imagePath.forEach(image => {
-                    const img = document.createElement("img");
-                    img.src = image;
+                         function imgLikesPath2() {
 
-                    img.width = 200;
-                    img.height = 200;
+                                        fetch('./Backend/getLikes2.php')
+                                        .then(response => response.json())
+                                        .then(imagePath => {
+                                            const imgs = document.getElementById("likeContent");
+                                            imagePath.forEach(image => {
 
-
-
-                    //const nameLabel = document.createElement("label");
-                    //nameLabel.textContent = name;
-                    //nameContainer.appendChild(nameLabel);
-
-                    // imgs.appendChild(nameContainer);
-                    imgs.appendChild(img);
-                })
-
-
-            })
-        }
-
-    function imgFavsPath() {
-                            fetch('./Backend/getFavs.php')
-                                .then(response => response.json())
-                                    .then(imagePath => {
-                                        const imgs = document.getElementById("favoriteContent");
-                                        imagePath.forEach(image => {
                                             const img = document.createElement("img");
                                             img.src = image;
 
                                             img.width = 200;
                                             img.height = 200;
 
+                                                    const container = document.createElement("div");
+                                                    container.classList.add('contain');
+                                                    img.classList.add('contain');
+                                                container.appendChild(img);
+
+                                                    
+                                                     const buttonContainer = document.createElement("div");
+                                                    buttonContainer.classList.add("buttonContainer");
 
 
-                                                    //const nameLabel = document.createElement("label");
-                                                    //nameLabel.textContent = name;
-                                                    //nameContainer.appendChild(nameLabel);
+                                                    const test = document.createElement("button");
+                                                    test.classList.add("buttonImage", "editButton2");
+                                                    test.addEventListener("click", function ()
+                                                    {
+                                                        editCreation(image);
+                                                    });
+                                                    buttonContainer.appendChild(test);
 
-                                           // imgs.appendChild(nameContainer);
-                                            imgs.appendChild(img);
+                                                    const test2 = document.createElement("button");
+                                                    test2.classList.add("buttonImage", "deleteButton");
+                                                    test2.addEventListener("click", function ()
+                                                    {
+                                                        deleteCreation(image);
+                                                    });
+                                                    buttonContainer.appendChild(test2);
+
+                                                    container.appendChild(buttonContainer);
+                                                imgs.appendChild(container);
+                                            })
+                                            
+                          
+                            
                                         })
-                                    })        
+                         }
+                         function imgFavsPath() {
+             
+                                        fetch('./Backend/getFavs2.php')
+                                        .then(response => response.json())
+                                        .then(imagePath => {
+                                            const imgs = document.getElementById("favoriteContent");
+                                            imagePath.forEach(image => {
 
-                            }
+                                            const img = document.createElement("img");
+                                            img.src = image;
 
-    function deleteCreation(image) {
-              var xhr = new XMLHttpRequest();
-                            xhr.open('POST', './Backend/Delete.php', true);
-                            xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-                        xhr.onreadystatechange = function ()
-                        {
-                            if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
-                                alert("deleted");
-                            } else {
-                                alert("error");
-                            }
-                        };
+                                            img.width = 200;
+                                            img.height = 200;
 
-                            xhr.send('image=' + encodeURIComponent(image));
+                                                    const container = document.createElement("div");
+                                                    container.classList.add('contain');
+                                                    img.classList.add('contain');
+                                                container.appendChild(img);
 
-    }
 
-    function editCreation(image) {
+                                                     const buttonContainer = document.createElement("div");
+                                                    buttonContainer.classList.add("buttonContainer");
 
-    }
+
+                                                    const test = document.createElement("button");
+                                                    test.classList.add("buttonImage", "editButton2");
+                                                    test.addEventListener("click", function ()
+                                                    {
+                                                        editCreation(image);
+                                                    });
+                                                    buttonContainer.appendChild(test);
+
+                                                    const test2 = document.createElement("button");
+                                                    test2.classList.add("buttonImage", "deleteButton");
+                                                    test2.addEventListener("click", function ()
+                                                    {
+                                                        deleteCreation(image);
+                                                    });
+                                                    buttonContainer.appendChild(test2);
+
+                                                    container.appendChild(buttonContainer);
+                                                imgs.appendChild(container);
+                                            })
+
+
+
+                                        })
+                         }
 
 </script>
-
+            

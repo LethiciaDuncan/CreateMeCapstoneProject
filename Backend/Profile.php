@@ -18,7 +18,7 @@ if ($_SESSION['signedIn'] == True) {
 
     } else {
 
-        //send them back and alert them they used the wrong password
+        
         header("Location: ../index.php");
     }
     mysqli_close($myDbConn);

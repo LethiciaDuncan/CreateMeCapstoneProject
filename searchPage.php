@@ -15,8 +15,8 @@ include_once('header.php');
 </head>
 
 <body>
-    <h1 id="title4"> Home</h1>
-   <div class="section1"></div>
+    <h1 id="title4"> </h1>
+    <div class="section1"></div>
     <form id="homeSearchBar" action="Backend/searchUser.php" method="post">
         <?php
 
@@ -29,9 +29,11 @@ include_once('header.php');
         <input class="searchInput" type="text" id="Name" name="Name" placeholder="Enter Username" />
         <button id="homeSearchButton">Search</button>
     </form>
-        <div id="creationContent2"></div>
-
+    <div id="creationContent2"></div>
     <button class="btn btn-light btn-lg" id="LogOutButton" onclick="redirectLogout()">
+        Go Back
+    </button>
+    <button class="btn btn-light btn-lg" id="LogOutButton" onclick="redirectBack()">
         LogOut
     </button>
     <img id="backgroundImg" src="Images/testdesign.png" />
@@ -39,29 +41,59 @@ include_once('header.php');
 </body>
 
 </html>
-
 <script>
     function redirectLogout() { window.location.href = "index.php"; }
+    function redirectLogout() { window.location.href = "home.php"; }
 
-  
-    var request = new XMLHttpRequest();
+         var request = new XMLHttpRequest();
     window.onload = (event) => {
-        imgPath()
+        loadJson()
+        imgPath();
+    }
+    //getting user info
+    function loadJson() {
+        request.open('GET', './Backend/getSearchedUserCreations.php');
+        request.onload=loadComplete;
+        request.send();
+
+
     }
 
-    function imgPath()
-    {
-       fetch('./Backend/getAllCreation.php')
+
+    //loading user info
+    function loadComplete(evt) {
+        var myResponse;
+        var myData;
+        var myUsername = "";
+        myResponse = request.responseText;
+        console.log(myResponse)
+
+        myData = JSON.parse(myResponse);
+        console.log(myData)
+
+        //putting user name in profileUserName p tag
+        for (index in myData) {
+            myUsername += "<tr><td>" +
+                myData[index].Username + "</td><td>";
+        }
+        myUsername += "<tr><td>";
+        document.getElementById("title4").innerHTML = myUsername;
+
+    }
+
+        function imgPath()
+        {
+            fetch('./Backend/SearchedUser.php')
             .then(response => response.json())
             .then(imagePath => {
                 const imgs = document.getElementById("creationContent2");
                 imagePath.forEach(image => {
 
-                    
+
                     const img = document.createElement("img");
- 
+
                     img.src = image;
-                    
+
                     img.width = 200;
                     img.height = 200;
 
@@ -69,35 +101,22 @@ include_once('header.php');
                     const container = document.createElement("div");
                     container.classList.add('contain');
                     img.classList.add('contain');
-                    const form = document.createElement("form");
-                    form.setAttribute("action", "/Backend/UserProfile.php");
-                    form.setAttribute("method", "POST");
-                    form.setAttribute("type", "hidden")
-                    const value = document.createElement("input");
-                    value.setAttribute("type", "hidden");
-                    value.setAttribute("name", "image");
-                    value.setAttribute("value", imagePath);
-                    form.appendChild(value);
-                    const formButton = document.createElement("button");
-                    formButton.textContent = "View User";
-                    formButton.addEventListener("click", function () {
-                        form.submit();
+                    img.addEventListener("click", function () {
+                        viewUser(image);
                     });
-                    container.appendChild(form);
-                    container.appendChild(formButton);
                     container.appendChild(img);
 
                     const buttonContainer = document.createElement("div");
                     buttonContainer.classList.add("buttonContainer");
 
-                        
+
                     const test = document.createElement("button");
                     test.classList.add("buttonImage", "likeButton");
                     test.addEventListener("click", function ()
                     {
                         addToLikes(image);
                     });
-                    
+
                         buttonContainer.appendChild(test);
 
                     const test2 = document.createElement("button");
@@ -111,10 +130,10 @@ include_once('header.php');
 
                     container.appendChild(buttonContainer);
                     imgs.appendChild(container);
+                })
             })
-        })
-    }
-         function addToFavs(image) {
+        }
+              function addToFavs(image) {
                    var xhr = new XMLHttpRequest();
                             xhr.open('POST', './Backend/addToFavs.php', true);
                             xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
@@ -147,5 +166,22 @@ include_once('header.php');
                             xhr.send('image=' + encodeURIComponent(image));
 
         }
+
+        function viewUser(image) {
+                     var xhr = new XMLHttpRequest();
+                            xhr.open('POST', './Backend/UserProfile.php', true);
+                            xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+                        xhr.onreadystatechange = function ()
+                        {
+                            if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+                                alert("clicked");
+                            }
+                        };
+
+                            xhr.send('image=' + encodeURIComponent(image));
+        }
+
+
+
    
 </script>

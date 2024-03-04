@@ -21,6 +21,7 @@ include_once('header.php');
         Back
     </button>
     <div id="img" class="creation">
+        <img id="capeImg" src="Images/hat5.png" />
         <img id="bodyImg" src="Images/blob.png" />
         <img id="eyeImg" src="Images/eyes1.png" />
         <img id="mouthImg" src="Images/mouth1.png" />
@@ -94,7 +95,7 @@ include_once('header.php');
     var currentHat = 0;
     var hatImgs = ["Images/hat1.png", "Images/hat2.png", "Images/hat3.png", "Images/hat4.png", "Images/hat6.png", "Images/hat7.png", "Images/hat8.png", "Images/hat5.png"];
     var currentCape = 0;
-    var capeImgs = ["Images/cape1.png", "Images/cape2.png", "Images/cape3.png", "Images/cape4.png", "Images/cape6.png","Images/cape7.png","Images/cape8.png","Images/cape5.png"];
+    var capeImgs = ["Images/hat5.png", "Images/cape1.png", "Images/cape2.png", "Images/cape4.png"];
     var currentBackGround = 0;
     var backgroundColors = ["#212529","#f8f9fa","#ff006e", "#ff0054","#eeef20","#531253", "#0a2472"];
     var currentMouth = 0;
@@ -243,7 +244,7 @@ include_once('header.php');
     }
     //change the cape
     function prevCapeImg() {
-        currentCape = (currentCape - 1 + capImgs.length) % capImgs.length;
+        currentCape = (currentCape - 1 + capeImgs.length) % capeImgs.length;
         //changes img
         changeCapeImg();
     }

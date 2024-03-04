@@ -5,11 +5,10 @@ include_once "../Backend/DbConnecter.php";
 header('Content-Type: application/json');
 
 
-
 if ($_SESSION['signedIn'] == True) {
     $dbConn = ConnGet();
-    $UserId = $_SESSION['UserId'];
-    $dataset = getUserFavs($dbConn, $UserId);
+    $userId = $_SESSION['UserProfileId'];
+    $dataset = getUserFavs($dbConn, $userId);
     $imagePath = array();
 
 
@@ -26,5 +25,4 @@ if ($_SESSION['signedIn'] == True) {
     echo "Not signed in";
     mysqli_close($dbConn);
 }
-
 ?>

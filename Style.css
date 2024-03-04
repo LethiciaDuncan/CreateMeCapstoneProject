@@ -248,6 +248,15 @@ body {
     right: -105px;
 }
 
+#capeImg {
+    position: absolute;
+    max-width: 1000px;
+    max-height: 1000px;
+    bottom: -115px;
+    right: -100px;
+   
+}
+
 #mouthImg {
     position: absolute;
     max-width: 250px;
@@ -698,6 +707,17 @@ header {
     gap: 10px;
 }
 
+  .contain{
+      cursor:pointer;
+  }
+
+.content {
+    top: 30%;
+    display: flex;
+    position: absolute;
+    z-index: 3;
+    gap: 10px;
+}
 #creationContent2 {
     top:30%;
     display: flex;
@@ -705,6 +725,14 @@ header {
     z-index: 3;
     gap: 10px;
    
+}
+
+#creationContent3 {
+    top: 30%;
+    display: flex;
+    position: absolute;
+    z-index: 3;
+    gap: 10px;
 }
 
 #homeSearchBar {
