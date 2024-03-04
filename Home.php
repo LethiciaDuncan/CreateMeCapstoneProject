@@ -76,7 +76,7 @@ include_once('header.php');
                     const value = document.createElement("input");
                     value.setAttribute("type", "hidden");
                     value.setAttribute("name", "image");
-                    value.setAttribute("value", imagePath);
+                    value.setAttribute("value", image);
                     form.appendChild(value);
                     const formButton = document.createElement("button");
                     formButton.textContent = "View User";

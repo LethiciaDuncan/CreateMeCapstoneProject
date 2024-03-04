@@ -156,7 +156,7 @@ include_once('header.php');
     }
     //getting user info
     function loadJson() {
-        request.open('GET', './Backend/getUserProfile2.php');
+        request.open('GET', './Backend/Profile.php');
         request.onload=loadComplete;
         request.send();
 
@@ -193,153 +193,84 @@ include_once('header.php');
 
     //display user created images
         function imgPath() {
-        fetch('./Backend/getUserCreation2.php')
+          fetch('./Backend/getUserCreation.php')
+                                .then(response => response.json())
+                                    .then(imagePath => {
+                                        const imgs = document.getElementById("creationContent");
+                                        imagePath.forEach(image => {
+                                            const img = document.createElement("img");
+                                            img.src = image;
+
+                                            img.width = 200;
+                                            img.height = 200;
+
+
+
+                                                    //const nameLabel = document.createElement("label");
+                                                    //nameLabel.textContent = name;
+                                                    //nameContainer.appendChild(nameLabel);
+
+                                           // imgs.appendChild(nameContainer);
+                                            imgs.appendChild(img);
+                                        })
+                                    })
+
+                            
+        }
+
+    function imgLikesPath2() {
+        fetch('./Backend/getLikes.php')
             .then(response => response.json())
             .then(imagePath => {
-                    const imgs = document.getElementById("creationContent");
+                const imgs = document.getElementById("likeContent");
                 imagePath.forEach(image => {
                     const img = document.createElement("img");
                     img.src = image;
 
                     img.width = 200;
                     img.height = 200;
-                    
 
 
+
+                    //const nameLabel = document.createElement("label");
+                    //nameLabel.textContent = name;
+                    //nameContainer.appendChild(nameLabel);
+
+                    // imgs.appendChild(nameContainer);
                     imgs.appendChild(img);
-
-
-                    const container = document.createElement("div");
-                    container.classList.add('contain');
-                    img.classList.add('contain');
-                    container.appendChild(img);
-
-                   
-
-                    const buttonContainer = document.createElement("div");
-                    buttonContainer.classList.add("buttonContainer");
-
-
-                    const test = document.createElement("button");
-                    test.classList.add("buttonImage", "editButton2");
-                    test.addEventListener("click", function ()
-                    {
-                        editCreation(image);
-                    });
-                    buttonContainer.appendChild(test);
-
-                    const test2 = document.createElement("button");
-                    test2.classList.add("buttonImage", "deleteButton");
-                    test2.addEventListener("click", function ()
-                    {
-                        deleteCreation(image);
-                    });
-                    buttonContainer.appendChild(test2);
-
-                    container.appendChild(buttonContainer);
-                    imgs.appendChild(container);
-                   
                 })
-            })
 
+
+            })
         }
 
-                         function imgLikesPath2() {
-
-                                        fetch('./Backend/getLikes2.php')
-                                        .then(response => response.json())
-                                        .then(imagePath => {
-                                            const imgs = document.getElementById("likeContent");
-                                            imagePath.forEach(image => {
-
+    function imgFavsPath() {
+                            fetch('./Backend/getFavs.php')
+                                .then(response => response.json())
+                                    .then(imagePath => {
+                                        const imgs = document.getElementById("favoriteContent");
+                                        imagePath.forEach(image => {
                                             const img = document.createElement("img");
                                             img.src = image;
 
                                             img.width = 200;
                                             img.height = 200;
 
-                                                    const container = document.createElement("div");
-                                                    container.classList.add('contain');
-                                                    img.classList.add('contain');
-                                                container.appendChild(img);
-
-                                                    
-                                                     const buttonContainer = document.createElement("div");
-                                                    buttonContainer.classList.add("buttonContainer");
 
 
-                                                    const test = document.createElement("button");
-                                                    test.classList.add("buttonImage", "editButton2");
-                                                    test.addEventListener("click", function ()
-                                                    {
-                                                        editCreation(image);
-                                                    });
-                                                    buttonContainer.appendChild(test);
+                                                    //const nameLabel = document.createElement("label");
+                                                    //nameLabel.textContent = name;
+                                                    //nameContainer.appendChild(nameLabel);
 
-                                                    const test2 = document.createElement("button");
-                                                    test2.classList.add("buttonImage", "deleteButton");
-                                                    test2.addEventListener("click", function ()
-                                                    {
-                                                        deleteCreation(image);
-                                                    });
-                                                    buttonContainer.appendChild(test2);
-
-                                                    container.appendChild(buttonContainer);
-                                                imgs.appendChild(container);
-                                            })
-                                            
-                          
-                            
+                                           // imgs.appendChild(nameContainer);
+                                            imgs.appendChild(img);
                                         })
-                         }
-                         function imgFavsPath() {
-             
-                                        fetch('./Backend/getFavs2.php')
-                                        .then(response => response.json())
-                                        .then(imagePath => {
-                                            const imgs = document.getElementById("favoriteContent");
-                                            imagePath.forEach(image => {
+                                    })
 
-                                            const img = document.createElement("img");
-                                            img.src = image;
-
-                                            img.width = 200;
-                                            img.height = 200;
-
-                                                    const container = document.createElement("div");
-                                                    container.classList.add('contain');
-                                                    img.classList.add('contain');
-                                                container.appendChild(img);
+                            }
 
 
-                                                     const buttonContainer = document.createElement("div");
-                                                    buttonContainer.classList.add("buttonContainer");
-
-
-                                                    const test = document.createElement("button");
-                                                    test.classList.add("buttonImage", "editButton2");
-                                                    test.addEventListener("click", function ()
-                                                    {
-                                                        editCreation(image);
-                                                    });
-                                                    buttonContainer.appendChild(test);
-
-                                                    const test2 = document.createElement("button");
-                                                    test2.classList.add("buttonImage", "deleteButton");
-                                                    test2.addEventListener("click", function ()
-                                                    {
-                                                        deleteCreation(image);
-                                                    });
-                                                    buttonContainer.appendChild(test2);
-
-                                                    container.appendChild(buttonContainer);
-                                                imgs.appendChild(container);
-                                            })
-
-
-
-                                        })
-                         }
 
 </script>
+
             

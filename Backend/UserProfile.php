@@ -10,6 +10,7 @@ $dbConn = ConnGet();
 $dataset = checkifImageExists($dbConn, $imagePath);
 if (mysqli_num_rows($dataset) == null) {
     mysqli_close($dbConn);
+    header("Location: ../home.php");
 }else{
     if ($row = mysqli_fetch_array($dataset)) {
         $userId = $row['UserId'];

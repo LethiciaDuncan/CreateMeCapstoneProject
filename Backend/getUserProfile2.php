@@ -8,15 +8,17 @@ $userId = $_SESSION['UserProfileId'];
 $dbConn = ConnGet();
 $myJSON = "";
 
-$dataset2 = getUser($dbConn, $userId);
+$dataset = getUser($dbConn, $userId);
 //getting user information
-if ($row2 = mysqli_fetch_array($dataset2)) {
-    $myJSON = '[{"Id":"' . $userId . '","Username":"' . $row2['Username'] . '","Password":"' . $row2['Password'] . '","Bio":"' . $row2['Bio'] . '"}]';
+if ($row = mysqli_fetch_array($dataset)) {
+    $myJSON = '[{"Id":"' . $userId . '","Username":"' . $row['Username'] . '","Password":"' . $row['Password'] . '","Bio":"' . $row['Bio'] . '"}]';
+
+} else {
 
 
     header("Location: ../UserProfile.php");
-    echo $myJSON;
-} else {
-    mysqli_close($dbConn);
 }
+mysqli_close($dbConn);
+
+echo $myJSON;
 ?>
